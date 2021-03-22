@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask import render_template, flash, url_for, request
 from sqlalchemy import desc
 from werkzeug.utils import redirect
@@ -22,7 +24,7 @@ def add():
     form = CreatePost()
 
     if form.validate_on_submit():
-        post = Post(body=form.body.data, title=form.title.data)
+        post = Post(body=form.body.data, title=form.title.data, nb_char=len(form.body.data))
         db.session.add(post)
         db.session.commit()
         flash('post now online.')
@@ -41,6 +43,8 @@ def edit(id):
     if request.method == "POST" and form.validate_on_submit():
         post.title = form.title.data
         post.body = form.body.data
+        post.nb_char = len(form.body.data)
+        post.edit_time = datetime.utcnow()
         db.session.commit()
         flash("your changes have been saved.")
 
@@ -67,3 +71,17 @@ def delete(id):
         return redirect(url_for("index"))
 
     return render_template("delete.html", title="Confirm delete post", form=form, post=post)
+
+
+@app.route("/post/<string:id>", methods=['GET'])
+def post(id):
+
+    post = Post.query.filter_by(id=int(id)).first()
+
+    return render_template("post.html", title=post.title, post=post)
+
+
+@app.route('/links')
+def links():
+
+    return render_template("links.html")
