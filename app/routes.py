@@ -12,9 +12,8 @@ from app.models import Post
 def index():
 
     posts = Post.query.order_by(desc(Post.timestamp)).all()
-    meh = "# hey"
 
-    return render_template("index.html", title="Home", posts=posts, meh=meh)
+    return render_template("index.html", title="Home", posts=posts)
 
 
 @app.route("/add", methods=['GET', 'POST'])
