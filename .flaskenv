@@ -1,0 +1,2 @@
+FLASK_APP=doll.py
+FLASK_DEBUG=1

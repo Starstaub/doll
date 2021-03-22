@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% for post in posts %}
+
+        <h2>{{ post.title }}</h2>
+        <i>{{ post.timestamp.strftime("%A, %d. %B %Y at %I:%M%p") }}</i>
+        {{ post.body | markdown }}
+        <a href="{{ url_for('edit', id=post.id) }}">Edit</a> - <a href="{{ url_for('delete', id=post.id) }}">Delete</a>
+
+    {% endfor %}
+
+{% endblock %}
