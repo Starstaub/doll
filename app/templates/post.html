@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>{{ post.title }}</h2>
+
+<span>
+    Posted on {{ post.timestamp.strftime("%A, %d. %B %Y at %I:%M%p") }}
+    {% if post.edit_time %}
+        <br>Edited on {{ post.edit_time.strftime("%A, %d. %B %Y at %I:%M%p") }}
+    {% endif %}
+</span>
+
+<p>{{ post.body | markdown }}</p>
+
+{% endblock %}
