@@ -19,9 +19,9 @@
         <div>
             <h1>Doll</h1>
             <a href="{{ url_for('index') }}">Home</a>
-            <a href="{{ url_for('add') }}">Markdown guide</a>
+            <a href="{{ url_for('markdown_guide') }}">Markdown guide</a>
             <a href="{{ url_for('links') }}">Links</a>
-            <a href="{{ url_for('add') }}" style="border: 1px solid black; padding: 3px; border-radius: 5px;">+ Add</a>
+            <a href="{{ url_for('post_add') }}" style="border: 1px solid black; padding: 3px; border-radius: 5px;">+ Add</a>
         </div>
         <hr>
         {% block content %}{% endblock %}

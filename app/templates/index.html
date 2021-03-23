@@ -7,26 +7,7 @@
     </section>
 
     {% for post in posts %}
-
-        <h2>{{ post.title }}</h2>
-
-        <span>Posted on {{ post.timestamp.strftime("%A, %d. %B %Y at %I:%M%p") }} UTC
-            {% if post.edit_time %}
-                <br>Edited on {{ post.edit_time.strftime("%A, %d. %B %Y at %I:%M%p") }} UTC
-            {% endif %}
-        </span>
-
-        <p>
-            {% if post.nb_char > 500 %}
-                {{ post.body | markdown | truncate(500, true) }}
-                <a href="{{ url_for('post', id=post.id) }}">[ read more ]</a><br>
-            {% else %}
-                {{ post.body | markdown }}
-            {% endif %}
-        </p>
-
-        <a href="{{ url_for('edit', id=post.id) }}">Edit</a> - <a href="{{ url_for('delete', id=post.id) }}">Delete</a>
-        <hr>
+        {% include '_posts.html' %}
     {% endfor %}
 
 {% endblock %}

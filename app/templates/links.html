@@ -2,10 +2,21 @@
 
 {% block content %}
 
-<h2>Interesting links</h2>
+    <h2>{{ title }}</h2>
 
-<section><h3>Website:</h3>
-    <a href="https://www.fontsquirrel.com/tools/webfont-generator">Webfont generator</a>
-</section>
+    <p><a href="{{ url_for('link_add') }}" style="border: solid 1px black; padding: 5px; border-radius: 5px">+ Add link</a></p>
+
+    <form action="" method="post">
+        {{ pick.hidden_tag() }}
+        {{ pick.category() }} {{ pick.submit() }}
+    </form>
+
+    <section>
+        {% include '_messages.html' %}
+    </section>
+
+    {% for result in results %}
+        {% include '_links.html' %}
+    {% endfor %}
 
 {% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Edit link</h1>
+
+<form action="" method="post">
+
+    {{ form.hidden_tag() }}
+
+    <p>
+    {{ form.category.label }}: {{ form.category() }} or {{ form.add_category() }}<br>
+    <i style="font-size:10px">(If a label from the drop down menu is chosen and the string field is filled, the label from the drop down menu will be ignored.)</i><br>
+
+    </p>
+    <p>
+        {{ form.title.label }}<br>
+        {{ form.title(size=32) }}<br>
+    </p>
+    <p>
+        {{ form.description.label }}<br>
+        {{ form.description() }}<br>
+    </p>
+    <p>{{ form.submit() }}</p>
+
+</form>
+
+{% endblock %}

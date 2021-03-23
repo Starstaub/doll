@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Delete link</h1>
+
+<form action="" method="post">
+
+    {{ form.hidden_tag() }}
+
+    <h3>Are you sure you want to delete the following link:</h3>
+    <p>{{ link.title }}</p>
+    Posted on {{ link.timestamp.strftime("%A, %d. %B %Y at %I:%M%p") }}
+    <p>
+        <b style="color:red;">abort!</b> - {{ form.submit() }}
+    </p>
+
+</form>
+
+{% endblock %}

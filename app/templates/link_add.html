@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Add link</h2>
+
+<form action="" method="post">
+
+    {{ form.hidden_tag() }}
+
+    {{ form.title.label }}: {{ form.title() }}<br>
+    {% for error in form.title.errors %}
+        <span>{{ error }}</span>
+    {% endfor %}
+
+    {{ form.category.label }}: {{ form.category() }} or {{ form.add_category() }}<br>
+    <i style="font-size:10px">(If a label from the drop down menu is chosen and the string field is filled, the label from the drop down menu will be ignored.)</i><br>
+
+    {{ form.website.label }}: {{ form.website() }}<br>
+    {{ form.url.label }}: {{ form.url() }}<br>
+
+    {{ form.year.label }}: {{ form.year() }}<br>
+    {% for error in form.year.errors %}
+        <span>{{ error }}</span>
+    {% endfor %}
+
+    {{ form.artist.label }}: {{ form.artist() }}<br>
+
+    {{ form.author.label }}: {{ form.author() }}<br>
+    {{ form.isbn.label }}: {{ form.isbn() }}<br>
+    {% for error in form.isbn.errors %}
+        <span>{{ error }}</span>
+    {% endfor %}
+
+    {{ form.description.label }}: {{ form.description() }}<br>
+
+    <p>{{ form.submit() }}</p>
+
+</form>
+
+{% endblock %}
