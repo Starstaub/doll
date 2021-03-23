@@ -9,7 +9,7 @@ class Post(db.Model):
     nb_char = db.Column(db.Integer, default=0)
     timestamp = db.Column(db.DateTime, index=True, default=NOW_TIME)
     edit_time = db.Column(db.DateTime, index=True)
-    title = db.Column(db.Text)
+    title = db.Column(db.String(100))
 
     def __repr__(self):
         return f"<Post {self.body}>"
@@ -31,3 +31,14 @@ class Link(db.Model):
 
     def __repr__(self):
         return f"<Link {self.title}>"
+
+
+class Task(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100))
+    status = db.Column(db.String(50))
+    created = db.Column(db.DateTime, index=True, default=NOW_TIME)
+    modified = db.Column(db.DateTime, index=True)
+    category = db.Column(db.String(50))
+    description = db.Column(db.Text)

@@ -6,7 +6,7 @@ from werkzeug.utils import redirect
 
 from app import app, db
 from app.forms import DeletePost, PickCategory, DeleteLink, AddOrEditPost, AddOrEditLink
-from app.models import Post, Link
+from app.models import Post, Link, Task
 from app.modules import pick_category, get_unique_categories
 
 
@@ -209,3 +209,14 @@ def link_delete(id):
 def markdown_guide():
 
     return render_template("markdown_guide.html", title="Markdown guide")
+
+
+@app.route("/tasks")
+def tasks():
+
+    results = Task.query
+
+    if not results.first():
+        flash("Nothing to show yet.")
+
+    return render_template("tasks.html", title="Tasks", results=results)
