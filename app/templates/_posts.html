@@ -7,8 +7,8 @@
 </span>
 
 <p>
-    {% if post.nb_char > 500 %}
-        {{ post.body | markdown | truncate(500, true) }}
+    {% if post.nb_char > 1000 %}
+        {{ post.body | markdown | truncate(1000, true) }}
         <a href="{{ url_for('post', id=post.id) }}">[ read more ]</a><br>
     {% else %}
         {{ post.body | markdown }}
