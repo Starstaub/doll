@@ -19,24 +19,26 @@ def index():
     return render_template("index.html", title="Home", posts=posts)
 
 
-@app.route("/post_add", methods=['GET', 'POST'])
+@app.route("/post_add", methods=["GET", "POST"])
 def post_add():
 
     form = AddOrEditPost()
 
     if form.validate_on_submit():
 
-        post = Post(body=form.body.data, title=form.title.data, nb_char=len(form.body.data))
+        post = Post(
+            body=form.body.data, title=form.title.data, nb_char=len(form.body.data)
+        )
         db.session.add(post)
         db.session.commit()
-        flash('post now online.')
+        flash("post now online.")
 
-        return redirect(url_for('index'))
+        return redirect(url_for("index"))
 
-    return render_template("post_add.html", title='Add Post', form=form)
+    return render_template("post_add.html", title="Add Post", form=form)
 
 
-@app.route("/post_edit/<string:id>", methods=['GET', 'POST'])
+@app.route("/post_edit/<string:id>", methods=["GET", "POST"])
 def post_edit(id):
 
     form = AddOrEditPost()
@@ -59,7 +61,7 @@ def post_edit(id):
     return render_template("post_edit.html", title="Edit post", form=form)
 
 
-@app.route("/post_delete/<string:id>", methods=['GET', 'POST'])
+@app.route("/post_delete/<string:id>", methods=["GET", "POST"])
 def post_delete(id):
 
     form = DeletePost()
@@ -72,10 +74,12 @@ def post_delete(id):
 
         return redirect(url_for("index"))
 
-    return render_template("post_delete.html", title="Confirm delete post", form=form, post=post)
+    return render_template(
+        "post_delete.html", title="Confirm delete post", form=form, post=post
+    )
 
 
-@app.route("/post/<string:id>", methods=['GET'])
+@app.route("/post/<string:id>", methods=["GET"])
 def post(id):
 
     post = Post.query.filter_by(id=int(id)).first()
@@ -83,7 +87,7 @@ def post(id):
     return render_template("post.html", title=post.title, post=post)
 
 
-@app.route('/links', methods=['GET', 'POST'])
+@app.route("/links", methods=["GET", "POST"])
 def links():
 
     pick = PickCategory()
@@ -105,7 +109,7 @@ def links():
     return render_template("links.html", title="Links", pick=pick, results=results)
 
 
-@app.route('/link_add', methods=['GET', 'POST'])
+@app.route("/link_add", methods=["GET", "POST"])
 def link_add():
 
     form = AddOrEditLink()
@@ -135,10 +139,10 @@ def link_add():
 
         return redirect(url_for("links"))
 
-    return render_template('link_add.html', title="Add link", form=form)
+    return render_template("link_add.html", title="Add link", form=form)
 
 
-@app.route('/link_edit/<string:id>', methods=['GET', 'POST'])
+@app.route("/link_edit/<string:id>", methods=["GET", "POST"])
 def link_edit(id):
 
     form = AddOrEditLink()
@@ -180,7 +184,7 @@ def link_edit(id):
     return render_template("link_edit.html", title="Edit link", form=form)
 
 
-@app.route("/link_delete/<string:id>", methods=['GET', 'POST'])
+@app.route("/link_delete/<string:id>", methods=["GET", "POST"])
 def link_delete(id):
 
     form = DeleteLink()
@@ -196,10 +200,12 @@ def link_delete(id):
 
         return redirect(url_for("links"))
 
-    return render_template("link_delete.html", title="Confirm delete link", form=form, link=link)
+    return render_template(
+        "link_delete.html", title="Confirm delete link", form=form, link=link
+    )
 
 
-@app.route('/markdown_guide')
+@app.route("/markdown_guide")
 def markdown_guide():
 
     return render_template("markdown_guide.html", title="Markdown guide")
