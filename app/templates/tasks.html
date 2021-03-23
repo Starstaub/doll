@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>{{ title }}</h2>
+
+    <p>+ Add Task</p>
+
+    <section>
+        {% include '_messages.html' %}
+    </section>
+
+    {% for result in results %}
+        {% include '_tasks.html' %}
+    {% endfor %}
+
+{% endblock %}
