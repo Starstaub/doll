@@ -1,0 +1,11 @@
+<p>
+    <span style="font-size:15px; line-height:10px;">{{ result.category }}</span>
+    <strong>{{ result.title }}</strong><br>
+    {% if result.url %}
+        {{ result.url }}<br>
+    {% endif %}
+    {% if result.description %}
+        {{ result.description }}<br>
+    {% endif %}
+    <a href="{{ url_for('link_edit', id=result.id) }}">Edit</a> - <a href="{{ url_for('link_delete', id=result.id) }}">Delete</a>
+</p>
