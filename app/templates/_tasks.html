@@ -1,6 +1,57 @@
-<p style="border: solid 2px #D9D9D9; padding: 15px; border-radius: 10px; margin: 5px auto">
-    <span style="font-size:15px; line-height:10px;">{{ result.category }}</span>
-    <strong>{{ result.title }}</strong><br>
-    {{ result.status }}<br>
-    {{ result.description }}<br>
-</p>
+<table class="task_table">
+
+    <tr class="tr_firstrow">
+
+        <td colspan="2" class="td_title">
+            <strong>{{ result.title }}</strong>
+        </td>
+
+        <td rowspan="2" class="td_options">
+
+            {% if result.status == "To do" %}
+                <span class="td_status" style="border-color: red; background: red">{{ result.status }}</span><br>
+            {% elif result.status == "On hold" %}
+                <span class="td_status" style="border-color: purple; background: purple">{{ result.status }}</span><br>
+            {% elif result.status == "Done" %}
+                <span class="td_status" style="border-color: green; background: green">{{ result.status }}</span><br>
+            {% elif result.status == "In progress" %}
+                <span class="td_status" style="border-color: orange; background: orange">{{ result.status }}</span><br>
+            {% else %}
+                <span class="td_status">{{ result.status }}</span><br>
+            {% endif %}
+
+            <span class="td_category">{{ result.category }}</span>
+        </td>
+
+    </tr>
+
+    <tr>
+
+        <td colspan="2" class="td_description">{{ result.description }}</td>
+
+    </tr>
+
+    {% if result.modified %}
+
+        <tr class="tr_lastrow">
+            <td width="7%" class="td_date td_created">Created:</td>
+            <td class="td_date td_created">{{ result.created.strftime("%A, %d. %B %Y %I:%M%p") }}</td>
+            <td rowspan="2" class="td_editdelete">✎✏︎ - <a href="#" class="link_delete">Delete</a></td>
+        </tr>
+
+        <tr class="tr_lastrow">
+            <td class="td_date">Modified:</td>
+            <td class="td_date">{{ result.modified.strftime("%A, %d. %B %Y %I:%M%p") }}</td>
+        </tr>
+
+    {% else %}
+
+        <tr class="tr_lastrow">
+            <td width="7%" class="td_date td_created">Created:</td>
+            <td class="td_date td_created">{{ result.created.strftime("%A, %d. %B %Y %I:%M%p") }}</td>
+            <td class="td_editdelete">Edit - <a href="#" class="link_delete">Delete</a></td>
+        </tr>
+
+    {% endif %}
+
+</table>
