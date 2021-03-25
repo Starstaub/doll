@@ -8,9 +8,11 @@
 
     {{ form.hidden_tag() }}
 
-    <h3>Are you sure you want to delete the following link:</h3>
-    <p>{{ link.title }}</p>
-    Posted on {{ link.timestamp.strftime("%A, %d. %B %Y at %I:%M%p") }}
+    <p>Are you sure you want to delete the following link?</p>
+
+    {% include "_links.html" %}
+
+    <p>This action is permanent and can't be undone.</p>
 
     <table class="table_buttons">
         <tr>

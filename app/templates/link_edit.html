@@ -17,6 +17,15 @@
         {{ form.title.label }}<br>
         {{ form.title(size=32) }}<br>
     </p>
+
+    {% if form.title.errors%}
+        <ul class="errors">
+            {% for error in form.title.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <p>
         {{ form.description.label }}<br>
         {{ form.description() }}<br>
