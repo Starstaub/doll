@@ -1,11 +1,11 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from flask import render_template, flash, url_for, request
 from sqlalchemy import desc
 from werkzeug.utils import redirect
 
 from app import app, db
-from app.forms import DeletePost, PickCategory, DeleteLink, AddOrEditPost, AddOrEditLink
+from app.forms import DeleteItem, PickCategory, AddOrEditPost, AddOrEditLink, AddOrEditTask
 from app.models import Post, Link, Task
 from app.modules import pick_category, get_unique_categories
 
@@ -26,10 +26,10 @@ def post_add():
 
     if form.validate_on_submit():
 
-        post = Post(
+        post_data = Post(
             body=form.body.data, title=form.title.data, nb_char=len(form.body.data)
         )
-        db.session.add(post)
+        db.session.add(post_data)
         db.session.commit()
         flash("post now online.")
 
@@ -42,21 +42,21 @@ def post_add():
 def post_edit(id):
 
     form = AddOrEditPost()
-    post = Post.query.filter_by(id=int(id)).first()
+    post_data = Post.query.filter_by(id=int(id)).first()
 
     if request.method == "POST" and form.validate_on_submit():
-        post.title = form.title.data
-        post.body = form.body.data
-        post.nb_char = len(form.body.data)
-        post.edit_time = datetime.utcnow()
+        post_data.title = form.title.data
+        post_data.body = form.body.data
+        post_data.nb_char = len(form.body.data)
+        post_data.edit_time = datetime.utcnow()
         db.session.commit()
         flash("your changes have been saved.")
 
         return redirect(url_for("index"))
 
     elif request.method == "GET":
-        form.title.data = post.title
-        form.body.data = post.body
+        form.title.data = post_data.title
+        form.body.data = post_data.body
 
     return render_template("post_edit.html", title="Edit post", form=form)
 
@@ -64,44 +64,44 @@ def post_edit(id):
 @app.route("/post_delete/<string:id>", methods=["GET", "POST"])
 def post_delete(id):
 
-    form = DeletePost()
-    post = Post.query.filter_by(id=int(id)).first()
+    form = DeleteItem()
+    post_data = Post.query.filter_by(id=int(id)).first()
 
     if form.validate_on_submit():
-        db.session.delete(post)
+        db.session.delete(post_data)
         db.session.commit()
         flash("so long, partner.")
 
         return redirect(url_for("index"))
 
     return render_template(
-        "post_delete.html", title="Confirm delete post", form=form, post=post
+        "post_delete.html", title="Confirm delete post", form=form, post=post_data
     )
 
 
 @app.route("/post/<string:id>", methods=["GET"])
 def post(id):
 
-    post = Post.query.filter_by(id=int(id)).first()
+    post_data = Post.query.filter_by(id=int(id)).first()
 
-    return render_template("post.html", title=post.title, post=post)
+    return render_template("post.html", title=post_data.title, post=post_data)
 
 
 @app.route("/links", methods=["GET", "POST"])
 def links():
 
     pick = PickCategory()
-    pick.category.choices = get_unique_categories(all=True)
+    pick.category.choices = get_unique_categories("link", all=True)
 
-    results = pick_category("All")
+    results = pick_category("link", "All")
 
     if pick.validate_on_submit():
 
         chosen_pick = pick.category.data
         if chosen_pick == "All":
-            results = pick_category("All")
+            results = pick_category("link", "All")
         else:
-            results = pick_category(chosen_pick)
+            results = pick_category("link", chosen_pick)
 
         if results.first() is None:
             flash("nothing to see here, move on!")
@@ -113,7 +113,7 @@ def links():
 def link_add():
 
     form = AddOrEditLink()
-    form.category.choices = get_unique_categories()
+    form.category.choices = get_unique_categories("link")
 
     if form.validate_on_submit():
 
@@ -146,13 +146,13 @@ def link_add():
 def link_edit(id):
 
     form = AddOrEditLink()
-    form.category.choices = get_unique_categories()
+    form.category.choices = get_unique_categories("link")
     link = Link.query.filter_by(id=int(id)).first()
 
     if request.method == "POST" and form.validate_on_submit():
 
         link.category = form.category.data
-        if link.category == "" and form.add_category.data:
+        if (link.category or link.category == "") and form.add_category.data:
             link.category = form.add_category.data
         link.url = form.url.data
         link.description = form.description.data
@@ -187,7 +187,7 @@ def link_edit(id):
 @app.route("/link_delete/<string:id>", methods=["GET", "POST"])
 def link_delete(id):
 
-    form = DeleteLink()
+    form = DeleteItem()
     link = Link.query.filter_by(id=int(id)).first()
 
     if form.validate_on_submit():
@@ -211,12 +211,51 @@ def markdown_guide():
     return render_template("markdown_guide.html", title="Markdown guide")
 
 
-@app.route("/tasks")
+@app.route("/tasks", methods=['GET', 'POST'])
 def tasks():
 
-    results = Task.query
+    pick = PickCategory()
+    pick.category.choices = get_unique_categories("task", all=True)
 
-    if not results.first():
-        flash("Nothing to show yet.")
+    results = pick_category("task", "All")
 
-    return render_template("tasks.html", title="Tasks", results=results)
+    if pick.validate_on_submit():
+
+        chosen_pick = pick.category.data
+        if chosen_pick == "All":
+            results = pick_category("task", "All")
+        else:
+            results = pick_category("task", chosen_pick)
+
+        if results.first() is None:
+            flash("nothing to see here, move on!")
+
+    return render_template("tasks.html", title="Tasks", pick=pick, results=results)
+
+
+@app.route("/task_add", methods=["GET", "POST"])
+def task_add():
+
+    form = AddOrEditTask()
+    form.category.choices = get_unique_categories("task")
+
+    if form.validate_on_submit():
+
+        task = Task()
+
+        task.status = form.status.data
+        task.category = form.category.data
+        if task.category and form.add_category.data:
+            task.category = form.add_category.data
+        task.title = form.title.data
+        task.description = form.description.data
+        task.created = datetime.utcnow() + timedelta(hours=1)
+
+        db.session.add(task)
+        db.session.commit()
+
+        flash(f"Task '{form.title.data}' successfully added.")
+
+        return redirect(url_for('tasks'))
+
+    return render_template("task_add.html", title="Add task", form=form)
