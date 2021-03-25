@@ -2,9 +2,14 @@
 
 {% block content %}
 
-    <h2>{{ title }}</h2>
-
-    <p><a href="{{ url_for('task_add') }}">+ Add Task</a></p>
+    <table width="100%">
+        <tr>
+            <td><h2>{{ title }}</h2></td>
+            <td style="text-align: right">
+                <a href="{{ url_for('task_add') }}" class="button_send"><strong>+</strong> Add Task</a>
+            </td>
+        </tr>
+    </table>
 
     <form action="" method="post">
         {{ pick.hidden_tag() }}
