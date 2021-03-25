@@ -30,11 +30,7 @@
     </tr>
 
     <tr>
-        {% if result.description %}
-            <td colspan="2" class="td_description">{{ result.description | markdown }}</td>
-        {% else %}
-            <td colspan="2" class="td_description"><i>[ No description ]</i></td>
-        {% endif %}
+        <td colspan="2" class="td_description">{{ result.description | markdown }}</td>
     </tr>
 
     {% if result.modified %}
@@ -55,7 +51,11 @@
         <tr class="tr_lastrow">
             <td width="7%" class="td_date td_created">Created:</td>
             <td class="td_date td_created">{{ result.created.strftime("%A, %d. %B %Y %I:%M%p") }}</td>
-            <td class="td_editdelete">Edit - <a href="#" class="link_delete">Delete</a></td>
+            <td class="td_editdelete">
+                {% if not delete %}
+                    Edit - <a href="{{ url_for('task_delete', id=result.id)}}" class="link_delete">Delete</a>
+                {% endif %}
+            </td>
         </tr>
 
     {% endif %}
