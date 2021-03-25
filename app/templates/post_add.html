@@ -16,7 +16,13 @@
         {{ form.body.label }}<br>
         {{ form.body(cols=50, rows=4) }}<br>
     </p>
-    <p>{{ form.submit() }}</p>
+
+    <table class="table_buttons">
+        <tr>
+            <td><a href="{{ url_for('index') }}" class="cancel_button_red">Cancel</a></td>
+            <td>{{ form.submit(class="button_send") }}</td>
+        </tr>
+    </table>
 
 </form>
 

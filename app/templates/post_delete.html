@@ -11,9 +11,13 @@
     <h3>Are you sure you want to delete the following post:</h3>
     <p>{{ post.title }}</p>
     Posted on {{ post.timestamp.strftime("%A, %d. %B %Y at %I:%M%p") }}
-    <p>
-        <b style="color:red;">abort!</b> - {{ form.submit() }}
-    </p>
+
+    <table class="table_buttons">
+        <tr>
+            <td><a href="{{ url_for('index') }}" class="cancel_button_blue">Cancel</a></td>
+            <td>{{ form.submit(class="button_delete") }}</td>
+        </tr>
+    </table>
 
 </form>
 

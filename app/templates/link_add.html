@@ -34,7 +34,12 @@
 
     {{ form.description.label }}: {{ form.description() }}<br>
 
-    <p>{{ form.submit() }}</p>
+    <table class="table_buttons">
+        <tr>
+            <td><a href="{{ url_for('links') }}" class="cancel_button_red">Cancel</a></td>
+            <td>{{ form.submit(class="button_send") }}</td>
+        </tr>
+    </table>
 
 </form>
 
