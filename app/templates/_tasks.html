@@ -53,7 +53,7 @@
             <td class="td_date td_created">{{ result.created.strftime("%A, %d. %B %Y %I:%M%p") }}</td>
             <td class="td_editdelete">
                 {% if not delete %}
-                    Edit - <a href="{{ url_for('task_delete', id=result.id)}}" class="link_delete">Delete</a>
+                <a href="#" class="link_edit">Edit</a> - <a href="{{ url_for('task_delete', id=result.id)}}" class="link_delete">Delete</a>
                 {% endif %}
             </td>
         </tr>

@@ -80,12 +80,24 @@
     vertical-align: middle;
 }
 
-.link_delete, .link_delete:visited
+.link_delete, .link_delete:visited, .link_edit, .link_edit:visited
 {
-    color: red;
     text-decoration: none;
 }
 
-.link_delete:hover {
-    color: pink;
+.link_edit {
+    color: DodgerBlue;
 }
+
+.link_delete {
+    color: red;
+}
+
+.link_edit:hover {
+    opacity: 0.5;
+}
+
+.link_delete:hover {
+    opacity: 0.5;
+}
+
