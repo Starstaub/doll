@@ -24,7 +24,7 @@ def links():
             results = pick_category("link", chosen_pick)
 
         if results.first() is None:
-            flash("nothing to see here, move on!")
+            flash("Nothing to show yet.")
 
     return render_template("links.html", title="Links", pick=pick, results=results)
 
@@ -45,6 +45,9 @@ def link_add():
 
         link.url = form.url.data
         link.description = form.description.data
+        if not link.description:
+                link.description = "_[ No description ]_"
+
         link.artist = form.artist.data
         link.author = form.author.data
         link.title = form.title.data
@@ -55,7 +58,7 @@ def link_add():
         db.session.add(link)
         db.session.commit()
 
-        flash(f"{form.title.data} added successfully")
+        flash(f"The link '{form.title.data}' was successfully added.")
 
         return redirect(url_for("links"))
 
@@ -84,7 +87,7 @@ def link_edit(id):
         link.isbn = form.isbn.data
 
         db.session.commit()
-        flash(f"your changes on {link.title} have been saved.")
+        flash(f"Your changes on '{link.title}' have been saved.")
 
         return redirect(url_for("links"))
 
@@ -116,10 +119,10 @@ def link_delete(id):
 
         db.session.delete(link)
         db.session.commit()
-        flash(f"the amigo {title} was successfully deleted")
+        flash(f"The link '{title}' was successfully deleted.")
 
         return redirect(url_for("links"))
 
     return render_template(
-        "link_delete.html", title="Confirm delete link", form=form, link=link
+        "link_delete.html", title="Confirm delete link", form=form, result=link
     )
