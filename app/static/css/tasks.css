@@ -17,6 +17,7 @@
 
 .td_title {
     line-height: 15px;
+    padding-bottom: 5px;
 }
 
 .td_options {
@@ -45,7 +46,6 @@
 .td_description {
     text-indent: 15px;
     font-size: 13px;
-    padding: 5px 10px;
     /* word-break: break-all; */
     width: 80%;
     border-top: #D9D9D9 1px solid;
@@ -57,7 +57,7 @@
 }
 
 .td_created {
-    padding-top: 5px;
+    padding-top: 7px;
 }
 
 .td_editdelete {
