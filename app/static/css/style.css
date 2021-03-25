@@ -104,7 +104,7 @@ hr
 }
 
 .errors > li, .flash_messages > li {
-    margin-left:20px;
+    margin-left: 20px;
     list-style-type: circle;
 }
 
