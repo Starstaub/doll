@@ -6,5 +6,5 @@ TODO_STATUS = (
     ('To do', 'To do'),
     ('In progress', 'In progress'),
     ('On hold', 'On hold'),
-    ('Completed', 'Completed')
+    ('Done', 'Done')
 )
