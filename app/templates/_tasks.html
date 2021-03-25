@@ -19,16 +19,22 @@
             {% else %}
                 <span class="td_status">{{ result.status }}</span><br>
             {% endif %}
+            {% if result.category == "Uncategorized" %}
+                <span class="td_category" style="color: LightSkyBlue; border-color: LightSkyBlue">{{ result.category }}</span>
+            {% else %}
+                <span class="td_category">{{ result.category }}</span>
+            {% endif %}
 
-            <span class="td_category">{{ result.category }}</span>
         </td>
 
     </tr>
 
     <tr>
-
-        <td colspan="2" class="td_description">{{ result.description }}</td>
-
+        {% if result.description %}
+            <td colspan="2" class="td_description">{{ result.description | markdown }}</td>
+        {% else %}
+            <td colspan="2" class="td_description"><i>[ No description ]</i></td>
+        {% endif %}
     </tr>
 
     {% if result.modified %}

@@ -4,7 +4,12 @@
 
     <h2>{{ title }}</h2>
 
-    <p>+ Add Task</p>
+    <p><a href="{{ url_for('task_add') }}">+ Add Task</a></p>
+
+    <form action="" method="post">
+        {{ pick.hidden_tag() }}
+        {{ pick.category() }} {{ pick.submit() }}
+    </form>
 
     <section>
         {% include '_messages.html' %}
