@@ -9,7 +9,7 @@ from app.models import Task
 from app.modules import get_unique_categories, pick_category
 
 
-@app.route("/tasks", methods=['GET', 'POST'])
+@app.route("/tasks", methods=["GET", "POST"])
 def tasks():
 
     pick = PickCategory()
@@ -29,7 +29,9 @@ def tasks():
         if results.first() is None:
             flash("Nothing to show yet.")
 
-    return render_template("tasks.html", title="Tasks", pick=pick, results=results, delete=False)
+    return render_template(
+        "tasks.html", title="Tasks", pick=pick, results=results, delete=False
+    )
 
 
 @app.route("/task_add", methods=["GET", "POST"])
@@ -49,7 +51,7 @@ def task_add():
         task.title = form.title.data
         task.description = form.description.data
         if not task.description:
-                task.description = "_[ No description ]_"
+            task.description = "_[ No description ]_"
         task.created = datetime.utcnow() + timedelta(hours=1)
 
         db.session.add(task)
@@ -57,7 +59,7 @@ def task_add():
 
         flash(f"The task '{form.title.data}' was successfully added.")
 
-        return redirect(url_for('tasks'))
+        return redirect(url_for("tasks"))
 
     return render_template("task_add.html", title="Add task", form=form)
 
@@ -80,5 +82,9 @@ def task_delete(id):
         return redirect(url_for("tasks"))
 
     return render_template(
-        "task_delete.html", title="Confirm delete task", form=form, result=task, delete=True
+        "task_delete.html",
+        title="Confirm delete task",
+        form=form,
+        result=task,
+        delete=True,
     )

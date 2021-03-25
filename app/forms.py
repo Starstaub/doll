@@ -42,7 +42,9 @@ class AddOrEditTask(FlaskForm):
     status = SelectField("Status", choices=TODO_STATUS, validators=[DataRequired()])
     title = StringField("Title", validators=[Length(min=0, max=100), DataRequired()])
     category = SelectField("Category", validators=[DataRequired()])
-    add_category = StringField("Category", validators=[Length(min=0, max=50), Optional()])
+    add_category = StringField(
+        "Category", validators=[Length(min=0, max=50), Optional()]
+    )
     description = PageDownField("Description")
 
     submit = SubmitField("Send")

@@ -46,7 +46,7 @@ def link_add():
         link.url = form.url.data
         link.description = form.description.data
         if not link.description:
-                link.description = "_[ No description ]_"
+            link.description = "_[ No description ]_"
 
         link.artist = form.artist.data
         link.author = form.author.data

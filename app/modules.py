@@ -20,9 +20,9 @@ def get_unique_categories(model_name, all=False):
 
     category_list = []
 
-    if model_name == 'link':
+    if model_name == "link":
         category_list = db.session.query(Link.category).distinct().all()
-    elif model_name == 'task':
+    elif model_name == "task":
         category_list = db.session.query(Task.category).distinct().all()
 
     new_list = [i[0] for i in category_list]
