@@ -38,7 +38,10 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     status = db.Column(db.String(50))
-    created = db.Column(db.DateTime, index=True, default=NOW_TIME)
+    created = db.Column(db.DateTime, index=True)
     modified = db.Column(db.DateTime, index=True)
     category = db.Column(db.String(50))
     description = db.Column(db.Text)
+
+    def __repr__(self):
+        return f"<Task {self.title}>"
