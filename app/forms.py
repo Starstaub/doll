@@ -43,7 +43,7 @@ class PickCategoryAndStatus(FlaskForm):
     category = SelectField("Category", validators=[DataRequired()])
     order = SelectField("Order by", choices=ORDER_BY, validators=[DataRequired()])
 
-    submit = SubmitField("Send")
+    submit = SubmitField("Search")
 
 
 class AddOrEditTask(FlaskForm):
