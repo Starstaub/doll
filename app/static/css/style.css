@@ -140,7 +140,7 @@ hr
     background-color: white;
 }
 
-.button_search {
+.button_search, .button_search:visited {
     color: DodgerBlue;
     vertical-align: middle;
     background-color: white;
@@ -149,6 +149,11 @@ hr
 .form_selectfield_margin, .button_search {
     margin-left: 5px;
     margin-right: 5px;
+}
+
+.button_search:hover {
+    color: white;
+    background-color: DodgerBlue;
 }
 
 
@@ -194,4 +199,31 @@ hr
     color: white;
     border: 1px solid DodgerBlue;
     background-color: DodgerBlue;
+}
+
+.page_button {
+    height: 18px;
+    width: 18px;
+    text-align: center;
+    border: 1px orange solid;
+    background-color: orange;
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 5px;
+    line-height:19.5px;
+}
+
+.page_button_left {
+    margin-right: 5px;
+}
+
+.page_button_right {
+    margin-left: 5px;
+}
+
+.page_button:hover {
+    background-color: white;
+    color: orange;
 }

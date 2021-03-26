@@ -25,6 +25,21 @@
 
     </form>
 
+
+    <table width="100%">
+
+        <tr>
+            <td>
+                <strong>{{ count }}</strong> tasks found
+            </td>
+            <td style="text-align: right;">
+                {% include "_pages.html" %}
+            </td>
+        </tr>
+
+    </table>
+
+
     <section>
         {% include '_messages.html' %}
     </section>
@@ -32,5 +47,11 @@
     {% for result in results %}
         {% include '_tasks.html' %}
     {% endfor %}
+
+    <table width="100%">
+        <tr>
+            <td style="text-align: center">{% include "_pages.html" %}</td>
+        </tr>
+    </table>
 
 {% endblock %}

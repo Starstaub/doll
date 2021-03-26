@@ -1,3 +1,4 @@
+from flask import request, url_for
 from sqlalchemy import desc
 
 from app import db
@@ -78,3 +79,32 @@ def add_all_status():
         new_status_list.append(tuple(temp))
 
     return tuple(new_status_list)
+
+
+def pages_pagination(results, number_per_page, url):
+
+    page = request.args.get('page', 1, type=int)
+    pagination = results.paginate(page,
+                                  per_page=number_per_page,
+                                  error_out=False)
+    count = results.count()
+
+    next_url = (
+        url_for(
+            url,
+            page=pagination.next_num,
+        )
+        if pagination.has_next
+        else None
+    )
+
+    prev_url = (
+        url_for(
+            url,
+            page=pagination.prev_num,
+        )
+        if pagination.has_prev
+        else None
+    )
+
+    return pagination, count, prev_url, next_url

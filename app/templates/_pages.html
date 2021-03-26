@@ -1,0 +1,9 @@
+{% if pages > 1 %}
+    {% if prev_url %}
+        <a href="{{ prev_url }}" class="page_button page_button_left">−</a>
+    {% endif %}
+    <strong>{{ page }}</strong> / {{ pages }}
+    {% if next_url %}
+        <a href="{{ next_url }}" class="page_button page_button_right">+</a>
+    {% endif %}
+{% endif %}
