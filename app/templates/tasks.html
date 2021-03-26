@@ -13,7 +13,9 @@
 
     <form action="" method="post">
         {{ pick.hidden_tag() }}
-        {{ pick.category() }} {{ pick.submit() }}
+        {{ pick.status() }}
+        {{ pick.category() }}
+        {{ pick.order() }}{{ pick.submit() }}
     </form>
 
     <section>

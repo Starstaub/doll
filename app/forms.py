@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, TextAreaField, IntegerField
 from wtforms.validators import DataRequired, Optional, Length
 
-from utils import TODO_STATUS
+from utils import TODO_STATUS, ORDER_BY
 
 
 class AddOrEditPost(FlaskForm):
@@ -33,6 +33,15 @@ class AddOrEditLink(FlaskForm):
 class PickCategory(FlaskForm):
 
     category = SelectField("Category")
+
+    submit = SubmitField("Send")
+
+
+class PickCategoryAndStatus(FlaskForm):
+
+    status = SelectField("Status", validators=[DataRequired()])
+    category = SelectField("Category", validators=[DataRequired()])
+    order = SelectField("Order by", choices=ORDER_BY, validators=[DataRequired()])
 
     submit = SubmitField("Send")
 

@@ -4,27 +4,27 @@ from flask import flash, render_template, url_for
 from werkzeug.utils import redirect
 
 from app import app, db
-from app.forms import PickCategory, AddOrEditTask, DeleteItem
+from app.forms import AddOrEditTask, DeleteItem, PickCategoryAndStatus
 from app.models import Task
-from app.modules import get_unique_categories, pick_category
+from app.modules import get_unique_categories, pick_category_and_status, add_all_status
 
 
 @app.route("/tasks", methods=["GET", "POST"])
 def tasks():
 
-    pick = PickCategory()
+    pick = PickCategoryAndStatus()
     pick.category.choices = get_unique_categories("task", all=True)
+    pick.status.choices = add_all_status()
 
-    results = pick_category("task", "All")
+    results = pick_category_and_status("All", "All", "Newest first")
 
     if pick.validate_on_submit():
 
-        chosen_pick = pick.category.data
+        chosen_status = pick.status.data
+        chosen_category = pick.category.data
+        chosen_order = pick.order.data
 
-        if chosen_pick == "All":
-            results = pick_category("task", "All")
-        else:
-            results = pick_category("task", chosen_pick)
+        results = pick_category_and_status(chosen_status, chosen_category, chosen_order)
 
         if results.first() is None:
             flash("Nothing to show yet.")
