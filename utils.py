@@ -8,3 +8,8 @@ TODO_STATUS = (
     ('On hold', 'On hold'),
     ('Done', 'Done')
 )
+
+ORDER_BY = (
+    ("Newest first", "Newest first"),
+    ("Oldest first", "Oldest first")
+)
