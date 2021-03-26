@@ -1,0 +1,40 @@
+.category_status {
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 11px;
+    padding: 1px 4px;
+}
+
+.status_todo {
+    color: white;
+    border-color: red;
+    background: red;
+}
+
+.status_inprogress {
+    color: white;
+    border-color: orange;
+    background: orange;
+}
+
+.status_onhold {
+    color: white;
+    border-color: purple;
+    background: purple;
+}
+
+.status_done {
+    color: white;
+    border-color: green;
+    background: green;
+}
+
+.cat_categorized {
+    border-color: DodgerBlue;
+    color: DodgerBlue;
+}
+
+.cat_uncategorized {
+    border-color: LightSkyBlue;
+    color: LightSkyBlue;
+}

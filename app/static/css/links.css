@@ -1,0 +1,36 @@
+.navigation_links,
+.navigation_links_active {
+    font-size: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
+    text-decoration: none;
+    color: DarkGray;
+}
+
+.link_delete,
+.link_edit,
+.link_readmore
+{
+    text-decoration: none;
+    color: DodgerBlue;
+}
+
+.navigation_links_active {
+    color: DodgerBlue;
+}
+
+.link_delete {
+    color: red;
+}
+
+.link_readmore {
+    color: purple;
+}
+
+.navigation_links_active:hover,
+.link_edit:hover,
+.link_delete:hover,
+.navigation_links:hover,
+.link_readmore:hover {
+    opacity: 0.6;
+}

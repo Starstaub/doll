@@ -1,3 +1,27 @@
+.table_navigation {
+    margin-bottom: -10px;
+}
+
+.table_status_category {
+    margin: 10px 0 10px -3px;
+}
+
+.table_status_category tr:nth-child(1) {
+    line-height: 8px;
+}
+
+.td_note {
+    padding-left: 10px;
+}
+
+
+
+
+
+
+
+
+
 .task_table {
     border: solid 2px #D9D9D9;
     border-radius: 10px;
@@ -24,23 +48,6 @@
     text-align: right;
     line-height: 20px;
     vertical-align: top;
-}
-
-.td_category, .td_status {
-    border-radius: 5px;
-    font-size: 11px;
-    padding: 1px 4px;
-}
-
-.td_category {
-    border: 1px #008ED0 solid;
-    color: DodgerBlue;
-}
-
-.td_status {
-    border: 1px grey solid;
-    background: grey;
-    color: white;
 }
 
 .td_description {
@@ -80,24 +87,41 @@
     vertical-align: middle;
 }
 
-.link_delete, .link_delete:visited, .link_edit, .link_edit:visited
-{
-    text-decoration: none;
+.form_description {
+    height: 150px;
 }
 
-.link_edit {
-    color: DodgerBlue;
+.form_title, .form_description {
+    width: 94.5%;
 }
 
-.link_delete {
-    color: red;
+.form_addcategory {
+    width: 150px;
 }
 
-.link_edit:hover {
-    opacity: 0.5;
+.form_title, .form_description, .form_addcategory {
+    padding: 5px;
+    border: 1px solid Silver;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    vertical-align: middle;
+    font-size: 13px;
 }
 
-.link_delete:hover {
-    opacity: 0.5;
+.form_label {
+    margin: 5px;
+    margin-left: 0;
+    text-align: left;
+    font-weight: bold;
+    font-size: 13px;
 }
 
+.form_selectfield {
+    height: 28px;
+    width: 150px;
+    border: 1px solid Silver;
+    margin-left: 10px;
+    margin-right: 10px;
+    vertical-align: middle;
+}

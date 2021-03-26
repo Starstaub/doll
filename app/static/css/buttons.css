@@ -1,0 +1,78 @@
+.button {
+    font-size: 13px;
+    font-family: arial;
+    padding: 5px 10px;
+    border: 1px solid DodgerBlue;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.blue_transparent:hover,
+.blue_filled {
+    color: white;
+    background-color: DodgerBlue;
+}
+
+.blue_transparent,
+.blue_filled:hover {
+    color: DodgerBlue;
+    background-color: white;
+}
+
+.red_transparent:hover,
+.red_filled
+{
+    color: white;
+    background-color: red;
+    border-color: red;
+}
+
+.red_transparent,
+.red_filled:hover {
+    color: red;
+    border-color: red;
+    background-color: white;
+}
+
+.orange_transparent {
+    color: orange;
+    border-color: orange;
+}
+
+.orange_transparent:hover {
+    color: white;
+    background-color: orange;
+}
+
+.orange_filled {
+    color: white;
+    background-color: orange;
+    border-color: orange;
+}
+
+.orange_filled:hover {
+    background-color: white;
+    color: orange;
+}
+
+.round_button {
+    height: 18px;
+    width: 18px;
+    line-height:19.5px;
+    border-radius: 50%;
+    display: inline-block;
+    padding: 0;
+    vertical-align: top;
+}
+
+.table_buttons {
+    width: 100%;
+    padding: 15px 20px;
+}
+
+.table_buttons > td {
+    width: 50%;
+}

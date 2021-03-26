@@ -1,0 +1,25 @@
+.error_messages,
+.flash_messages {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+.error_messages > li,
+.flash_messages > li {
+    margin-left: 20px;
+    list-style-type: circle;
+}
+
+.error_messages {
+    margin: 5px 10px;
+    width: 94.5%;
+    color: orange;
+    border-color: orange;
+}
+
+.flash_messages {
+    width: 98%;
+    color: YellowGreen;
+    border-color: YellowGreen;
+}
