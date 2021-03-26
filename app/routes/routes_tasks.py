@@ -134,6 +134,9 @@ def task_edit(id):
         form.status.data = task.status
         form.category.data = task.category
         form.title.data = task.title
-        form.description.data = task.description
+        if task.description == "_[ No description ]_":
+            form.description.data = ""
+        else:
+            form.description.data = task.description
 
     return render_template("task_edit.html", title="Edit task", form=form)
