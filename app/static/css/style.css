@@ -64,6 +64,7 @@ hr
     border-radius: 5px;
     margin-left: 10px;
     margin-right: 10px;
+    vertical-align: middle;
     font-size: 13px;
 }
 
@@ -81,6 +82,7 @@ hr
     border: 1px solid Silver;
     margin-left: 10px;
     margin-right: 10px;
+    vertical-align: middle;
 }
 
 .errors, .flash_messages {
@@ -111,7 +113,7 @@ hr
 
 
 
-.button_send, .button_delete {
+.button_send, .button_delete, .button_search {
     color: white;
     border: 1px solid DodgerBlue;
     border-radius: 5px;
@@ -136,6 +138,17 @@ hr
 .button_delete:hover {
     color: red;
     background-color: white;
+}
+
+.button_search {
+    color: DodgerBlue;
+    vertical-align: middle;
+    background-color: white;
+}
+
+.form_selectfield_margin, .button_search {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 
