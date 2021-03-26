@@ -8,7 +8,7 @@
 }
 
 html {
-    width: 100vw; /* fixes the problem of the scrollbar moving the content of the website */
+    width: calc(100vw - 17px); /* fixes the problem of the scrollbar moving the content of the website */
 }
 
 body
@@ -19,6 +19,7 @@ body
     text-align: justify;
     width: 600px;
     margin: auto;
+    padding-left: 17px;
     padding-top: 10px;
 }
 
