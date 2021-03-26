@@ -52,7 +52,7 @@ class AddOrEditTask(FlaskForm):
     title = StringField("Title", validators=[Length(min=0, max=100), DataRequired()])
     category = SelectField("Category", validators=[DataRequired()])
     add_category = StringField(
-        "Category", validators=[Length(min=0, max=50), Optional()]
+        "Category", validators=[Length(min=0, max=15), Optional()]
     )
     description = PageDownField("Description")
 
