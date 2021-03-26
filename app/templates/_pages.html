@@ -1,9 +1,17 @@
 {% if pages > 1 %}
+
     {% if prev_url %}
-        <a href="{{ prev_url }}" class="page_button page_button_left">−</a>
+        <a href="{{ prev_url }}" class="button round_button orange_filled marg_right">
+            −
+        </a>
     {% endif %}
+
     <strong>{{ page }}</strong> / {{ pages }}
+
     {% if next_url %}
-        <a href="{{ next_url }}" class="page_button page_button_right">+</a>
+        <a href="{{ next_url }}" class="button round_button orange_filled marg_left">
+            +
+        </a>
     {% endif %}
+
 {% endif %}

@@ -9,20 +9,18 @@
         <td rowspan="2" class="td_options">
 
             {% if result.status == "To do" %}
-                <span class="td_status" style="border-color: red; background: red">{{ result.status }}</span><br>
+                <span class="category_status status_todo">{{ result.status }}</span><br>
             {% elif result.status == "On hold" %}
-                <span class="td_status" style="border-color: purple; background: purple">{{ result.status }}</span><br>
+                <span class="category_status status_onhold">{{ result.status }}</span><br>
             {% elif result.status == "Done" %}
-                <span class="td_status" style="border-color: green; background: green">{{ result.status }}</span><br>
+                <span class="category_status status_done">{{ result.status }}</span><br>
             {% elif result.status == "In progress" %}
-                <span class="td_status" style="border-color: orange; background: orange">{{ result.status }}</span><br>
-            {% else %}
-                <span class="td_status">{{ result.status }}</span><br>
+                <span class="category_status status_inprogress">{{ result.status }}</span><br>
             {% endif %}
             {% if result.category == "Uncategorized" %}
-                <span class="td_category" style="color: LightSkyBlue; border-color: LightSkyBlue">{{ result.category }}</span>
+                <span class="category_status cat_uncategorized">{{ result.category }}</span>
             {% else %}
-                <span class="td_category">{{ result.category }}</span>
+                <span class="category_status cat_categorized">{{ result.category }}</span>
             {% endif %}
 
         </td>

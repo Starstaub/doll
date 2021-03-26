@@ -3,9 +3,7 @@
 
 {% block content %}
 
-    <section>
-        {% include '_messages.html' %}
-    </section>
+    {% include '_messages.html' %}
 
     {% for post in posts %}
         {% include '_posts.html' %}

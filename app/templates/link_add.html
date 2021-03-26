@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<h2 style="line-height: 37px">Add link</h2>
+<h2>Add link</h2>
 
 <form action="" method="post">
 
@@ -15,7 +15,7 @@
     {% endfor %}
 
     {{ form.category.label }}: {{ form.category() }} or {{ form.add_category() }}<br>
-    <i style="font-size:10px">(If a label from the drop down menu is chosen and the string field is filled, the label from the drop down menu will be ignored.)</i><br>
+    <span class="note">(If a label from the drop down menu is chosen and the string field is filled, the label from the drop down menu will be ignored.)</span><br>
 
     {{ form.website.label }}: {{ form.website() }}<br>
     {{ form.url.label }}: {{ form.url() }}<br>
@@ -37,8 +37,14 @@
 
     <table class="table_buttons">
         <tr>
-            <td><a href="{{ url_for('links') }}" class="cancel_button_red">Cancel</a></td>
-            <td>{{ form.submit(class="button_send") }}</td>
+            <td>
+                <a href="{{ url_for('links') }}" class="button red_transparent">
+                    Cancel
+                </a>
+            </td>
+            <td class="rightered">
+                {{ form.submit(class="button blue_filled") }}
+            </td>
         </tr>
     </table>
 

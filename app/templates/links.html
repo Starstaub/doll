@@ -5,9 +5,13 @@
 
     <table width="100%">
         <tr>
-            <td><h2>{{ title }}</h2></td>
-            <td style="text-align: right">
-                <a href="{{ url_for('link_add') }}" class="button_send"><strong>+</strong> Add Link</a>
+            <td>
+                <h2>{{ title }}</h2>
+            </td>
+            <td class="rightered">
+                <a href="{{ url_for('link_add') }}" class="button blue_filled">
+                    +  Add Link
+                </a>
             </td>
         </tr>
     </table>
@@ -17,9 +21,7 @@
         {{ pick.category() }} {{ pick.submit() }}
     </form>
 
-    <section>
-        {% include '_messages.html' %}
-    </section>
+    {% include '_messages.html' %}
 
     {% for result in results %}
         {% include '_links.html' %}

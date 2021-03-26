@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<h1>Edit post</h1>
+<h2>Edit post</h2>
 
 <form action="" method="post">
 
@@ -17,7 +17,19 @@
         {{ form.body.label }}<br>
         {{ form.body(cols=50, rows=4) }}<br>
     </p>
-    <p>{{ form.submit() }}</p>
+
+    <table class="table_buttons">
+        <tr>
+            <td>
+                <a href="{{ url_for('index') }}" class="button red_transparent">
+                    Cancel
+                </a>
+            </td>
+            <td class="rightered">
+                {{ form.submit(class="button blue_filled") }}
+            </td>
+        </tr>
+    </table>
 
 </form>
 

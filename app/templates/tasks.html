@@ -5,9 +5,13 @@
 
     <table width="100%">
         <tr>
-            <td><h2>{{ title }}</h2></td>
-            <td style="text-align: right">
-                <a href="{{ url_for('task_add') }}" class="button_send">+ &nbsp;Add Task</a>
+            <td>
+                <h2>{{ title }}</h2>
+            </td>
+            <td class="rightered">
+                <a href="{{ url_for('task_add') }}" class="button blue_filled">
+                    + &nbsp;Add Task
+                </a>
             </td>
         </tr>
     </table>
@@ -15,7 +19,7 @@
     <form action="" method="post">
         {{ pick.hidden_tag() }}
 
-        <table style="margin: auto; padding-bottom: 15px">
+        <table style="margin: auto; padding-bottom: 15px"> <!-- TO BE FIXED -->
             <tr>
                 <td>{{ pick.status(class="form_selectfield form_selectfield_margin") }}</td>
                 <td>{{ pick.category(class="form_selectfield form_selectfield_margin") }}</td>
@@ -33,7 +37,7 @@
             <td>
                 <strong>{{ count }}</strong> tasks found
             </td>
-            <td style="text-align: right;">
+            <td class="rightered">
                 {% include "_pages.html" %}
             </td>
         </tr>
@@ -41,9 +45,7 @@
     </table>
 
 
-    <section>
-        {% include '_messages.html' %}
-    </section>
+    {% include '_messages.html' %}
 
     {% for result in results %}
         {% include '_tasks.html' %}
@@ -51,7 +53,9 @@
 
     <table width="100%">
         <tr>
-            <td style="text-align: center">{% include "_pages.html" %}</td>
+            <td class="centered">
+                {% include "_pages.html" %}
+            </td>
         </tr>
     </table>
 

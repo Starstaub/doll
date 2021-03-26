@@ -7,6 +7,11 @@
         {{ pagedown.include_pagedown() }}
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/links.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/messages.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/categories.css') }}">
+
         <link rel="stylesheet" href="{{ url_for('static', filename='css/tasks.css') }}">
 
         {% if title %}
@@ -14,9 +19,11 @@
         {% else %}
             <title>Welcome to Doll</title>
         {% endif %}
+
     </head>
 
     <body>
+
         <h1>Doll</h1>
 
         {% set navigation_set = [
@@ -25,28 +32,32 @@
             (url_for('links'), "links", "Links")
         ] -%}
         {% set active_page = active_page -%}
-        
-        <table width="100%" style="margin-bottom: -10px;">
+
+        <table width="100%" class="table_navigation">
             <tr>
-                <td style="font-size: 15px;">
+                <td>
                     {% for url, id, title in navigation_set %}
                         {% if id == active_page %}
-                            <a href={{ url }} class="navigation_links navigation_links_active">{{ title }}</a>
+                            <a href={{ url }} class="navigation_links_active">{{ title }}</a>
                         {% else %}
                             <a href={{ url }} class="navigation_links">{{ title }}</a>
                         {% endif %}
                     {% endfor %}
                 </td>
-                <td style="text-align: right">
-                    <a href="{{ url_for('post_add') }}" class="button_send">+ &nbsp;Add Post</a>
+                <td class="rightered">
+                    <a href="{{ url_for('post_add') }}" class="button blue_filled">
+                        + &nbsp;Add Post
+                    </a>
                 </td>
             </tr>
         </table>
+
         <hr>
+
         {% block content %}{% endblock %}
+
     </body>
 
-    <footer style="margin-bottom: 20px">
-    </footer>
+    <footer></footer>
 
 </html>

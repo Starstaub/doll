@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<h1>Add new post</h1>
+<h2>Add new post</h2>
 
 <form action="" method="post">
 
@@ -20,8 +20,14 @@
 
     <table class="table_buttons">
         <tr>
-            <td><a href="{{ url_for('index') }}" class="cancel_button_red">Cancel</a></td>
-            <td>{{ form.submit(class="button_send") }}</td>
+            <td>
+                <a href="{{ url_for('index') }}" class="button red_transparent">
+                    Cancel
+                </a>
+            </td>
+            <td class="rightered">
+                {{ form.submit(class="button blue_filled") }}
+            </td>
         </tr>
     </table>
 

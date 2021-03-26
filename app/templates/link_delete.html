@@ -17,8 +17,14 @@
 
     <table class="table_buttons">
         <tr>
-            <td><a href="{{ url_for('links') }}" class="cancel_button_blue">Cancel</a></td>
-            <td>{{ form.submit(class="button_delete") }}</td>
+            <td>
+                <a href="{{ url_for('links') }}" class="button blue_transparent">
+                    Cancel
+                </a>
+            </td>
+            <td class="rightered">
+                {{ form.submit(class="button red_filled") }}
+            </td>
         </tr>
     </table>
 
