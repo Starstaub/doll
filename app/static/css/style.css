@@ -7,6 +7,10 @@
     font-style: normal;
 }
 
+html {
+    width: 100vw; /* fixes the problem of the scrollbar moving the content of the website */
+}
+
 body
 {
     font-size: 13px;
