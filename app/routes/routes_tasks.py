@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from flask import flash, render_template, url_for, request
+from flask import flash, render_template, url_for
 from werkzeug.utils import redirect
 
 from app import app, db
@@ -16,7 +16,7 @@ def tasks():
     pick.category.choices = get_unique_categories("task", all=True)
     pick.status.choices = add_all_status()
 
-    results = pick_category_and_status("All", "All", "Newest first")
+    results = pick_category_and_status("All statuses", "All categories", "Newest first")
 
     pagination, count, prev_url, next_url = pages_pagination(results, app.config['TASKS_PER_PAGE'], "tasks")
 

@@ -8,7 +8,7 @@ from utils import TODO_STATUS
 
 def pick_category(model, category):
 
-    if category == "All":
+    if category == "All categories":
         if model == "link":
             return Link.query
         elif model == "task":
@@ -22,17 +22,17 @@ def pick_category(model, category):
 
 def pick_category_and_status(status, category, order):
 
-    if status == "All" and category == "All":
+    if status == "All statuses" and category == "All categories":
         if order == "Newest first":
             return Task.query.order_by(desc("created"))
         return Task.query.order_by("created")
 
-    elif status == "All":
+    elif status == "All statuses":
         if order == "Newest first":
             return Task.query.filter_by(category=category).order_by(desc("created"))
         return Task.query.filter_by(category=category).order_by("created")
 
-    elif category == "All":
+    elif category == "All categories":
         if order == "Newest first":
             return Task.query.filter_by(status=status).order_by(desc("created"))
         return Task.query.filter_by(status=status).order_by("created")
@@ -55,7 +55,7 @@ def get_unique_categories(model_name, all=False):
     new_list = [i[0] for i in category_list]
 
     if all:
-        new_list.insert(0, "All")
+        new_list.insert(0, "All categories")
     elif "Uncategorized" not in new_list:
         new_list.insert(0, "Uncategorized")
 
@@ -65,13 +65,13 @@ def get_unique_categories(model_name, all=False):
 def add_all_status():
 
     status_list = list(TODO_STATUS)
-    status_list.insert(0, ("All", "All"))
+    status_list.insert(0, ("All statuses", "All statuses"))
 
     new_status_list = []
 
     for ele in status_list:
         temp = list(ele)
-        if temp[0] == "All":
+        if temp[0] == "All statuses":
             temp_count = db.session.query(Task.category).count()
         else:
             temp_count = Task.query.filter_by(status=temp[0]).count()
