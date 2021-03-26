@@ -30,7 +30,10 @@
             </tr>
             <tr>
                 <td>{{ form.status(class="form_selectfield") }}</td>
-                <td>{{ form.category(class="form_selectfield") }}  or {{ form.add_category(class="form_addcategory") }}</td>
+                <td>
+                    {% set z = form.category.process_data("Uncategorized") %}
+                    {{ form.category(class="form_selectfield") }}
+                    or {{ form.add_category(class="form_addcategory") }}</td>
             </tr>
             <tr>
                 <td colspan="2" style="padding-left: 10px">
