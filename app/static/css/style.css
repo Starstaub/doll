@@ -238,3 +238,18 @@ hr
     background-color: white;
     color: orange;
 }
+
+.navigation_links {
+    margin-right: 5px;
+    margin-left: 5px;
+    text-decoration: none;
+    color: DarkGray;
+}
+
+.navigation_links:hover {
+    color: Silver;
+}
+
+.navigation_links_active {
+    color: DodgerBlue;
+}

@@ -18,12 +18,24 @@
 
     <body>
         <h1>Doll</h1>
+
+        {% set navigation_set = [
+            (url_for('index'), "index", "Home"),
+            (url_for('tasks'), "tasks", "Tasks"),
+            (url_for('links'), "links", "Links")
+        ] -%}
+        {% set active_page = active_page -%}
+        
         <table width="100%" style="margin-bottom: -10px;">
             <tr>
                 <td style="font-size: 15px;">
-                    <a href="{{ url_for('index') }}" style="margin-right: 5px; text-decoration: none; color: DarkGray;">Home</a>
-                    <a href="{{ url_for('tasks') }}" style="margin-right: 5px; margin-left: 5px; text-decoration: none; color: DarkGray;">Tasks</a>
-                    <a href="{{ url_for('links') }}" style="margin-left: 5px; text-decoration: none; color: DarkGray;">Links</a>
+                    {% for url, id, title in navigation_set %}
+                        {% if id == active_page %}
+                            <a href={{ url }} class="navigation_links navigation_links_active">{{ title }}</a>
+                        {% else %}
+                            <a href={{ url }} class="navigation_links">{{ title }}</a>
+                        {% endif %}
+                    {% endfor %}
                 </td>
                 <td style="text-align: right">
                     <a href="{{ url_for('post_add') }}" class="button_send">+ &nbsp;Add Post</a>
