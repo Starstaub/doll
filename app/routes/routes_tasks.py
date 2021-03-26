@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from flask import flash, render_template, url_for
+from flask import flash, render_template, url_for, request
 from werkzeug.utils import redirect
 
 from app import app, db
@@ -101,3 +101,39 @@ def task_delete(id):
         result=task,
         delete=True,
     )
+
+
+@app.route("/task_edit/<string:id>", methods=["GET", "POST"])
+def task_edit(id):
+
+    form = AddOrEditTask()
+    form.category.choices = get_unique_categories("task")
+
+    task = Task.query.filter_by(id=int(id)).first()
+
+    if request.method == "POST" and form.validate_on_submit():
+
+        task.status = form.status.data
+        task.category = form.category.data
+        if task.category and form.add_category.data:
+            task.category = form.add_category.data
+        task.title = form.title.data
+        task.description = form.description.data
+        if not task.description:
+            task.description = "_[ No description ]_"
+        task.modified = datetime.utcnow() + timedelta(hours=1)
+
+        db.session.commit()
+
+        flash(f"The changes on '{task.title}' have been saved.")
+
+        return redirect(url_for("tasks"))
+
+    elif request.method == "GET":
+
+        form.status.data = task.status
+        form.category.data = task.category
+        form.title.data = task.title
+        form.description.data = task.description
+
+    return render_template("task_edit.html", title="Edit task", form=form)
