@@ -75,8 +75,11 @@ def add_all_status():
             temp_count = db.session.query(Task.category).count()
         else:
             temp_count = Task.query.filter_by(status=temp[0]).count()
-        temp[1] += " (" + str(temp_count) + ")"
-        new_status_list.append(tuple(temp))
+        if temp_count > 0:
+            temp[1] += " (" + str(temp_count) + ")"
+            new_status_list.append(tuple(temp))
+        else:
+            continue
 
     return tuple(new_status_list)
 
