@@ -98,14 +98,12 @@ hr
 .errors {
     margin: 5px 10px;
     width: 94.5%;
-    background-color: PapayaWhip;
-    color: DarkSalmon;
-    border: 1px solid DarkSalmon;
+    color: orange;
+    border: 1px solid orange;
 }
 
 .flash_messages {
     width: 98%;
-    background-color: FloralWhite;
     color: YellowGreen;
     border: 1px solid YellowGreen;
 }
@@ -118,7 +116,7 @@ hr
 
 
 
-.button_send, .button_delete, .button_search {
+.button_send, .button_delete, .button_search, .button_md {
     color: white;
     border: 1px solid DodgerBlue;
     border-radius: 5px;
@@ -161,8 +159,16 @@ hr
     background-color: DodgerBlue;
 }
 
+.button_md {
+    color: orange;
+    background-color: white;
+    border-color: orange;
+}
 
-
+.button_md:hover {
+    color: white;
+    background-color: orange;
+}
 
 
 
@@ -206,7 +212,7 @@ hr
     background-color: DodgerBlue;
 }
 
-.page_button {
+.page_button, .md_round_button {
     height: 18px;
     width: 18px;
     text-align: center;

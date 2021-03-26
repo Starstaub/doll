@@ -17,14 +17,19 @@
     </head>
 
     <body>
-        <div>
-            <h1>Doll</h1>
-            <a href="{{ url_for('index') }}">Home</a>
-            <a href="{{ url_for('markdown_guide') }}">Markdown guide</a>
-            <a href="{{ url_for('links') }}">Links</a>
-            <a href="{{ url_for('tasks') }}">Tasks</a>
-            <a href="{{ url_for('post_add') }}" style="border: 1px solid black; padding: 3px; border-radius: 5px;">+ Add</a>
-        </div>
+        <h1>Doll</h1>
+        <table width="100%" style="margin-bottom: -10px;">
+            <tr>
+                <td style="font-size: 15px;">
+                    <a href="{{ url_for('index') }}" style="margin-right: 5px; text-decoration: none; color: DarkGray;">Home</a>
+                    <a href="{{ url_for('tasks') }}" style="margin-right: 5px; margin-left: 5px; text-decoration: none; color: DarkGray;">Tasks</a>
+                    <a href="{{ url_for('links') }}" style="margin-left: 5px; text-decoration: none; color: DarkGray;">Links</a>
+                </td>
+                <td style="text-align: right">
+                    <a href="{{ url_for('post_add') }}" class="button_send">+ &nbsp;Add Post</a>
+                </td>
+            </tr>
+        </table>
         <hr>
         {% block content %}{% endblock %}
     </body>
