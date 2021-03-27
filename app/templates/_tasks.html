@@ -43,7 +43,7 @@
             <td class="date">Modified:</td>
             <td class="date">{{ result.modified.strftime("%A, %d. %B %Y %I:%M%p") }}</td>
             <td class="tickets_editdelete">
-                <a href="{{ url_for('task_edit', id=result.id)}}" class="link_edit">
+                <a href="{{ url_for('task_add_edit', id=result.id)}}" class="link_edit">
                     Edit
                 </a> -
                 <a href="{{ url_for('task_delete', id=result.id)}}" class="link_delete">
@@ -59,7 +59,7 @@
             <td class="date tickets_created">{{ result.created.strftime("%A, %d. %B %Y %I:%M%p") }}</td>
             <td class="tickets_editdelete">
                 {% if not delete %}
-                    <a href="{{ url_for('task_edit', id=result.id)}}" class="link_edit">
+                    <a href="{{ url_for('task_add_edit', id=result.id)}}" class="link_edit">
                         Edit
                     </a> -
                     <a href="{{ url_for('task_delete', id=result.id)}}" class="link_delete">

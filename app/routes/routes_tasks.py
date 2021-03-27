@@ -47,36 +47,6 @@ def tasks():
     )
 
 
-@app.route("/task_add", methods=["GET", "POST"])
-def task_add():
-
-    form = AddOrEditTask()
-    form.category.choices = get_unique_categories("task")
-
-    if form.validate_on_submit():
-
-        task = Task()
-
-        task.status = form.status.data
-        task.category = form.category.data
-        if task.category and form.add_category.data:
-            task.category = form.add_category.data
-        task.title = form.title.data
-        task.description = form.description.data
-        if not task.description:
-            task.description = "_[ No description ]_"
-        task.created = datetime.utcnow() + timedelta(hours=1)
-
-        db.session.add(task)
-        db.session.commit()
-
-        flash(f"The task '{form.title.data}' was successfully added.")
-
-        return redirect(url_for("tasks"))
-
-    return render_template("task_add.html", title="Add task", form=form)
-
-
 @app.route("/task_delete/<string:id>", methods=["GET", "POST"])
 def task_delete(id):
 
@@ -103,13 +73,21 @@ def task_delete(id):
     )
 
 
-@app.route("/task_edit/<string:id>", methods=["GET", "POST"])
-def task_edit(id):
+@app.route("/task/add", methods=["GET", "POST"])
+@app.route("/task/edit/<string:id>", methods=["GET", "POST"])
+def task_add_edit(id=None):
 
     form = AddOrEditTask()
     form.category.choices = get_unique_categories("task")
 
-    task = Task.query.filter_by(id=int(id)).first()
+    if id:
+        task = Task.query.filter_by(id=int(id)).first()
+        title = "Edit task"
+        url = "task_edit.html"
+    else:
+        task = Task()
+        title = "Add task"
+        url = "task_add.html"
 
     if request.method == "POST" and form.validate_on_submit():
 
@@ -121,15 +99,21 @@ def task_edit(id):
         task.description = form.description.data
         if not task.description:
             task.description = "_[ No description ]_"
-        task.modified = datetime.utcnow() + timedelta(hours=1)
 
-        db.session.commit()
+        if id:
+            task.modified = datetime.utcnow() + timedelta(hours=1)
+            db.session.commit()
+            flash(f"The changes on '{task.title}' have been saved.")
 
-        flash(f"The changes on '{task.title}' have been saved.")
+        else:
+            task.created = datetime.utcnow() + timedelta(hours=1)
+            db.session.add(task)
+            db.session.commit()
+            flash(f"The task '{form.title.data}' was successfully added.")
 
         return redirect(url_for("tasks"))
 
-    elif request.method == "GET":
+    elif id and request.method == "GET":
 
         form.status.data = task.status
         form.category.data = task.category
@@ -139,4 +123,4 @@ def task_edit(id):
         else:
             form.description.data = task.description
 
-    return render_template("task_edit.html", title="Edit task", form=form)
+    return render_template(url, title=title, form=form)
