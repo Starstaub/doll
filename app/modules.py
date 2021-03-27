@@ -39,8 +39,12 @@ def pick_category_and_status(status, category, order):
 
     else:
         if order == "Newest first":
-            return Task.query.filter_by(category=category, status=status).order_by(desc("created"))
-        return Task.query.filter_by(category=category, status=status).order_by("created")
+            return Task.query.filter_by(category=category, status=status).order_by(
+                desc("created")
+            )
+        return Task.query.filter_by(category=category, status=status).order_by(
+            "created"
+        )
 
 
 def get_unique_categories(model_name, all=False):
@@ -86,28 +90,12 @@ def add_all_status():
 
 def pages_pagination(results, number_per_page, url):
 
-    page = request.args.get('page', 1, type=int)
-    pagination = results.paginate(page,
-                                  per_page=number_per_page,
-                                  error_out=False)
+    page = request.args.get("page", 1, type=int)
+    pagination = results.paginate(page, per_page=number_per_page, error_out=False)
     count = results.count()
 
-    next_url = (
-        url_for(
-            url,
-            page=pagination.next_num,
-        )
-        if pagination.has_next
-        else None
-    )
+    next_url = url_for(url, page=pagination.next_num,) if pagination.has_next else None
 
-    prev_url = (
-        url_for(
-            url,
-            page=pagination.prev_num,
-        )
-        if pagination.has_prev
-        else None
-    )
+    prev_url = url_for(url, page=pagination.prev_num,) if pagination.has_prev else None
 
     return pagination, count, prev_url, next_url

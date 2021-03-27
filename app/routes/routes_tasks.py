@@ -6,7 +6,12 @@ from werkzeug.utils import redirect
 from app import app, db
 from app.forms import AddOrEditTask, DeleteItem, PickCategoryAndStatus
 from app.models import Task
-from app.modules import get_unique_categories, pick_category_and_status, add_all_status, pages_pagination
+from app.modules import (
+    get_unique_categories,
+    pick_category_and_status,
+    add_all_status,
+    pages_pagination,
+)
 
 
 @app.route("/tasks", methods=["GET", "POST"])
@@ -18,7 +23,9 @@ def tasks():
 
     results = pick_category_and_status("All statuses", "All categories", "Newest first")
 
-    pagination, count, prev_url, next_url = pages_pagination(results, app.config['TASKS_PER_PAGE'], "tasks")
+    pagination, count, prev_url, next_url = pages_pagination(
+        results, app.config["TASKS_PER_PAGE"], "tasks"
+    )
 
     if pick.validate_on_submit():
 
@@ -28,7 +35,9 @@ def tasks():
 
         results = pick_category_and_status(chosen_status, chosen_category, chosen_order)
 
-        pagination, count, prev_url, next_url = pages_pagination(results, app.config['TASKS_PER_PAGE'], "tasks")
+        pagination, count, prev_url, next_url = pages_pagination(
+            results, app.config["TASKS_PER_PAGE"], "tasks"
+        )
 
         if results.first() is None:
             flash("Nothing to show yet.")
