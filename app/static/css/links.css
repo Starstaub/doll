@@ -1,4 +1,5 @@
 .navigation_links,
+.navigation_links:hover,
 .navigation_links_active {
     font-size: 15px;
     margin-right: 5px;
@@ -8,22 +9,27 @@
 }
 
 .link_delete,
+.link_delete:hover,
 .link_edit,
-.link_readmore
-{
+.link_edit:hover,
+.link_readmore,
+.link_readmore:hover {
     text-decoration: none;
     color: DodgerBlue;
 }
 
-.navigation_links_active {
+.navigation_links_active,
+.navigation_links_active:hover {
     color: DodgerBlue;
 }
 
-.link_delete {
+.link_delete,
+.link_delete:hover {
     color: red;
 }
 
-.link_readmore {
+.link_readmore,
+.link_readmore:hover {
     color: purple;
 }
 

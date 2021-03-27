@@ -17,8 +17,16 @@
     </table>
 
     <form action="" method="post">
+
         {{ pick.hidden_tag() }}
-        {{ pick.category() }} {{ pick.submit() }}
+
+        <table class="table_selectfield">
+            <tr>
+                <td>{{ pick.category(class="form_selectfield") }}</td>
+                <td>{{ pick.submit(class="button blue_transparent marg_left") }}</td>
+            </tr>
+        </table>
+
     </form>
 
     {% include '_messages.html' %}

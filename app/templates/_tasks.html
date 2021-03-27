@@ -1,12 +1,12 @@
-<table class="task_table">
+<table class="tickets_table">
 
-    <tr class="tr_firstrow">
+    <tr class="tickets_firstrow">
 
-        <td colspan="2" class="td_title">
+        <td colspan="2" class="tickets_title">
             <strong>{{ result.title }}</strong>
         </td>
 
-        <td rowspan="2" class="td_options">
+        <td rowspan="2" class="tickets_options rightered">
 
             {% if result.status == "To do" %}
                 <span class="category_status status_todo">{{ result.status }}</span><br>
@@ -28,33 +28,43 @@
     </tr>
 
     <tr>
-        <td colspan="2" class="td_description">{{ result.description | markdown }}</td>
+        <td colspan="2" class="tickets_description">{{ result.description | markdown }}</td>
     </tr>
 
     {% if result.modified %}
 
-        <tr class="tr_lastrow">
-            <td width="7%" class="td_date td_created">Created:</td>
-            <td class="td_date td_created">{{ result.created.strftime("%A, %d. %B %Y %I:%M%p") }}</td>
+        <tr class="tickets_lastrow">
+            <td width="7%" class="date tickets_created">Created:</td>
+            <td class="date tickets_created">{{ result.created.strftime("%A, %d. %B %Y %I:%M%p") }}</td>
             <td></td>
         </tr>
 
-        <tr class="tr_lastrow">
-            <td class="td_date">Modified:</td>
-            <td class="td_date">{{ result.modified.strftime("%A, %d. %B %Y %I:%M%p") }}</td>
-            <td class="td_editdelete">
-                <a href="{{ url_for('task_edit', id=result.id)}}" class="link_edit">Edit</a> - <a href="{{ url_for('task_delete', id=result.id)}}" class="link_delete">Delete</a>
+        <tr class="tickets_lastrow">
+            <td class="date">Modified:</td>
+            <td class="date">{{ result.modified.strftime("%A, %d. %B %Y %I:%M%p") }}</td>
+            <td class="tickets_editdelete">
+                <a href="{{ url_for('task_edit', id=result.id)}}" class="link_edit">
+                    Edit
+                </a> -
+                <a href="{{ url_for('task_delete', id=result.id)}}" class="link_delete">
+                    Delete
+                </a>
             </td>
         </tr>
 
     {% else %}
 
-        <tr class="tr_lastrow">
-            <td width="7%" class="td_date td_created">Created:</td>
-            <td class="td_date td_created">{{ result.created.strftime("%A, %d. %B %Y %I:%M%p") }}</td>
-            <td class="td_editdelete">
+        <tr class="tickets_lastrow">
+            <td width="7%" class="date tickets_created">Created:</td>
+            <td class="date tickets_created">{{ result.created.strftime("%A, %d. %B %Y %I:%M%p") }}</td>
+            <td class="tickets_editdelete">
                 {% if not delete %}
-                    <a href="{{ url_for('task_edit', id=result.id)}}" class="link_edit">Edit</a> - <a href="{{ url_for('task_delete', id=result.id)}}" class="link_delete">Delete</a>
+                    <a href="{{ url_for('task_edit', id=result.id)}}" class="link_edit">
+                        Edit
+                    </a> -
+                    <a href="{{ url_for('task_delete', id=result.id)}}" class="link_delete">
+                        Delete
+                    </a>
                 {% endif %}
             </td>
         </tr>

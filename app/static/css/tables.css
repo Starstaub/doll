@@ -73,6 +73,10 @@
     vertical-align: middle;
 }
 
+.form_table {
+    margin-bottom: 10px;
+}
+
 .form_label {
     margin: 5px;
     margin-left: 0;
