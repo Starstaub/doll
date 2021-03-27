@@ -18,7 +18,7 @@ class Post(db.Model):
 class Link(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
-    category = db.Column(db.String(50))
+    category = db.Column(db.String(15))
     url = db.Column(db.String(255))
     description = db.Column(db.Text)
     artist = db.Column(db.String(50))
@@ -40,8 +40,22 @@ class Task(db.Model):
     status = db.Column(db.String(50))
     created = db.Column(db.DateTime, index=True)
     modified = db.Column(db.DateTime, index=True)
-    category = db.Column(db.String(50))
+    category = db.Column(db.String(15))
     description = db.Column(db.Text)
 
     def __repr__(self):
         return f"<Task {self.title}>"
+
+
+class Wishlist(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100))
+    category = db.Column(db.String(15))
+    website = db.Column(db.String(50))
+    url = db.Column(db.String(255))
+    description = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime, index=True)
+
+    def __repr__(self):
+        return f"<Wishlist {self.title}>"
