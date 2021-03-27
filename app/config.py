@@ -9,4 +9,5 @@ class Config(object):
         "DATABASE_URL"
     ) or "sqlite:///" + os.path.join(basedir, "app.db")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    TASKS_PER_PAGE = 5
+    TASKS_PER_PAGE = 12
+    WISHLIST_PER_PAGE = 12
