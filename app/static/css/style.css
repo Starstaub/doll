@@ -71,3 +71,12 @@ hr {
 footer {
     margin-bottom: 20px;
 }
+
+a {
+    color: DodgerBlue;
+    text-decoration: none;
+}
+
+a:hover {
+    opacity: 0.6;
+}
