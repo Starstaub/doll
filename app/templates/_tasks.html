@@ -36,14 +36,15 @@
         <tr class="tr_lastrow">
             <td width="7%" class="td_date td_created">Created:</td>
             <td class="td_date td_created">{{ result.created.strftime("%A, %d. %B %Y %I:%M%p") }}</td>
-            <td rowspan="2" class="td_editdelete">
-                <a href="{{ url_for('task_edit', id=result.id)}}" class="link_edit">Edit</a> - <a href="{{ url_for('task_delete', id=result.id)}}" class="link_delete">Delete</a>
-            </td>
+            <td></td>
         </tr>
 
         <tr class="tr_lastrow">
             <td class="td_date">Modified:</td>
             <td class="td_date">{{ result.modified.strftime("%A, %d. %B %Y %I:%M%p") }}</td>
+            <td class="td_editdelete">
+                <a href="{{ url_for('task_edit', id=result.id)}}" class="link_edit">Edit</a> - <a href="{{ url_for('task_delete', id=result.id)}}" class="link_delete">Delete</a>
+            </td>
         </tr>
 
     {% else %}
