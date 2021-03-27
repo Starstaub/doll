@@ -24,7 +24,7 @@ class AddOrEditLink(FlaskForm):
     author = StringField("Author", validators=[Length(min=0, max=50)])
     title = StringField("Title", validators=[Length(min=0, max=100), DataRequired()])
     year = IntegerField("Year", validators=[Optional()])
-    website = StringField("Website", validators=[Length(min=0, max=100)])
+    website = StringField("Website", validators=[Length(min=0, max=50)])
     isbn = IntegerField("ISBN", validators=[Optional()])
 
     submit = SubmitField("Send")
@@ -62,3 +62,17 @@ class AddOrEditTask(FlaskForm):
 class DeleteItem(FlaskForm):
 
     submit = SubmitField("Delete permanently")
+
+
+class AddOrEditWishlist(FlaskForm):
+
+    title = StringField("Title", validators=[Length(min=0, max=100), DataRequired()])
+    category = SelectField("Category", validators=[DataRequired()])
+    add_category = StringField(
+        "Category", validators=[Length(min=0, max=15), Optional()]
+    )
+    website = StringField("Website", validators=[Length(min=0, max=50)])
+    url = StringField("URL", validators=[Length(min=0, max=255)])
+    description = TextAreaField("Description")
+
+    submit = SubmitField("Send")

@@ -25,7 +25,7 @@ class Link(db.Model):
     author = db.Column(db.String(50))
     title = db.Column(db.String(100))
     year = db.Column(db.Integer)
-    website = db.Column(db.String(100))
+    website = db.Column(db.String(50))
     isbn = db.Column(db.Integer)
     timestamp = db.Column(db.DateTime, index=True, default=NOW_TIME)
 
