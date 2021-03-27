@@ -47,7 +47,7 @@ def tasks():
     )
 
 
-@app.route("/task_delete/<string:id>", methods=["GET", "POST"])
+@app.route("/task/delete/<string:id>", methods=["GET", "POST"])
 def task_delete(id):
 
     form = DeleteItem()
@@ -83,11 +83,11 @@ def task_add_edit(id=None):
     if id:
         task = Task.query.filter_by(id=int(id)).first()
         title = "Edit task"
-        url = "task_edit.html"
+        edit = True
     else:
         task = Task()
         title = "Add task"
-        url = "task_add.html"
+        edit = False
 
     if request.method == "POST" and form.validate_on_submit():
 
@@ -123,4 +123,4 @@ def task_add_edit(id=None):
         else:
             form.description.data = task.description
 
-    return render_template(url, title=title, form=form)
+    return render_template("task.html", title=title, form=form, edit=edit)
