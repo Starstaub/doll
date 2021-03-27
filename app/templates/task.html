@@ -46,7 +46,9 @@
                         <tr class="indent">
                             <td>{{ form.status(class="form_selectfield") }}</td>
                             <td>
-                                {% set z = form.category.process_data("Uncategorized") %}
+                                {% if not edit %}
+                                    {% set z = form.category.process_data("Uncategorized") %}
+                                {% endif %}
                                 {{ form.category(class="form_selectfield") }}
                                 or {{ form.add_category(class="form_addcategory") }}
                             </td>
