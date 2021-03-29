@@ -11,7 +11,7 @@
         {{ result.description }}<br>
     {% endif %}
 
-    <a href="{{ url_for('link_edit', id=result.id) }}" class="link_edit">
+    <a href="{{ url_for('link_add_edit', id=result.id) }}" class="link_edit">
         Edit
     </a> -
     <a href="{{ url_for('link_delete', id=result.id) }}" class="link_delete">
