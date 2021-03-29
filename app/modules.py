@@ -2,20 +2,20 @@ from flask import request, url_for
 from sqlalchemy import desc
 
 from app import db
-from app.models import Link, Task
+from app.models import Task, Wish
 from utils import TODO_STATUS
 
 
 def pick_category(model, category):
 
     if category == "All categories":
-        if model == "link":
-            return Link.query
+        if model == "wish":
+            return Wish.query
         elif model == "task":
             return Task.query
 
-    if model == "link":
-        return Link.query.filter_by(category=category).order_by("timestamp")
+    if model == "wish":
+        return Wish.query.filter_by(category=category).order_by("timestamp")
     elif model == "task":
         return Task.query.filter_by(category=category).order_by("created")
 
@@ -51,8 +51,8 @@ def get_unique_categories(model_name, all=False):
 
     category_list = []
 
-    if model_name == "link":
-        category_list = db.session.query(Link.category).distinct().all()
+    if model_name == "wish":
+        category_list = db.session.query(Wish.category).distinct().all()
     elif model_name == "task":
         category_list = db.session.query(Task.category).distinct().all()
 

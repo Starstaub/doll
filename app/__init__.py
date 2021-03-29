@@ -15,4 +15,4 @@ pagedown = PageDown(app)
 Misaka(app)
 
 from app import models
-from app.routes import routes, routes_posts, routes_links, routes_tasks
+from app.routes import routes, routes_posts, routes_wishes, routes_tasks

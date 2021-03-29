@@ -84,7 +84,7 @@
     line-height: 20px;
 }
 
-.form_title, .form_description, .form_addcategory {
+.form_title, .form_description, .form_addcategory, .form_year, .form_artist, .form_website, .form_url, .form_author, .form_isbn {
     padding: 5px;
     border: 1px solid Gainsboro;
     border-radius: 5px;
@@ -111,4 +111,32 @@
     width: 150px;
     border: 1px solid Gainsboro;
     vertical-align: middle;
+}
+
+.form_year {
+    width: 76px;
+}
+
+.form_artist {
+    width: 450px;
+}
+
+.form_website {
+    width: 170px;
+}
+
+.form_url {
+    width: 356px;
+}
+
+.form_category_2 {
+    width: 261.5px;
+}
+
+.form_author {
+    width: 400px;
+}
+
+.form_isbn {
+    width: 126px;
 }

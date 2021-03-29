@@ -1,0 +1,51 @@
+<table width="100%" style="padding: 10px 5px; border-bottom: 2px solid Silver;">
+    <tr>
+        <td>
+            {% if result.url %}
+                 <a href="{{ result.url }}" target="_blank"><strong>{{ result.title }}</strong></a>
+            {% else %}
+                {{ result.title }}
+            {% endif %}
+
+            {% if result.category == "Uncategorized" %}
+                <span class="category_status cat_uncategorized">{{ result.category }}</span>
+            {% else %}
+                <span class="category_status cat_categorized">{{ result.category }}</span>
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+            {% if result.artist %}
+                {{ result.artist }} ({{ result.year }})
+
+            {% elif result.author %}
+
+                {{ result.author }} ({{ result.year }}) {{ result.isbn }}
+
+            {% endif %}
+        </td>
+    </tr>
+    {% if result.picture %}
+        <div style="width:100px">{{ result.picture | markdown }}</div>
+    {% endif %}
+
+    {% if result.description %}
+        <tr>
+            <td>
+            {{ result.description }}
+            </td>
+        </tr>
+    {% endif %}
+    <tr>
+        <td>
+            <a href="{{ url_for('wish_add_edit', id=result.id) }}" class="link_edit">
+                Edit
+            </a> -
+            <a href="{{ url_for('wish_delete', id=result.id) }}" class="link_delete">
+                Delete
+            </a>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% set active_page = "wishlist" %}
+
+{% block content %}
+
+    <table width="100%">
+        <tr>
+            <td>
+                <h2>
+                    {{ title }}
+                </h2>
+            </td>
+            <td class="rightered">
+                <a href="{{ url_for('markdown_guide') }}" target="_blank" class="button orange_transparent">
+                    .md help >
+                </a>
+            </td>
+        </tr>
+    </table>
+
+
+<form action="" method="post">
+
+    {{ form.hidden_tag() }}
+
+    <table width="100%" class="form_table">
+        <tr>
+            <td class="form_label leftered">
+                <strong>{{ form.title.label }}</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>{{ form.title(class="form_title") }}</td>
+        </tr>
+        <tr>
+            <td class="form_label">
+                <strong>{{ form.category.label }}</strong>
+            </td>
+        </tr>
+        <tr class="indent">
+            <td>
+                {% if not edit %}
+                    {% set z = form.category.process_data("Uncategorized") %}
+                {% endif %}
+                {{ form.category(class="form_selectfield marg_right_10 form_category_2") }} or {{ form.add_category(class="form_addcategory form_category_2") }}
+            </td>
+        </tr>
+        <tr>
+            <td class="td_note">
+                <span class="note">
+                    (If a label from the drop down menu is chosen and the string field is filled,
+                    the label from the drop down menu will be ignored.)
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="width: 200px; display: inline-block;">
+                    <strong>{{ form.website.label }}</strong>
+                </span>
+                <strong>{{ form.url.label }}</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.website(class="form_website") }}
+                {{ form.url(class="form_url") }}
+
+                {% if form.url.errors%}
+                    <ul class="error_messages">
+                        {% for error in form.url.errors %}
+                            <li><strong>URL:</strong> {{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="width: 480px; display: inline-block;">
+                    <strong>{{ form.artist.label }}</strong>
+                </span>
+                <strong>{{ form.year.label }}</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.artist(class="form_artist") }} {{ form.year(class="form_year") }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="width: 430px; display: inline-block;">
+                    <strong>{{ form.author.label }}</strong>
+                </span>
+                <strong>{{ form.isbn.label }}</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.author(class="form_author") }} {{ form.isbn(class="form_isbn") }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="width: 430px; display: inline-block;">
+                    <strong>{{ form.color.label }}</strong>
+                </span>
+                <strong>{{ form.size.label }}</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.color(class="form_author") }} {{ form.size(class="form_isbn") }}
+            </td>
+        </tr>
+        <tr>
+            <td class="form_label leftered">
+                <strong>{{ form.picture.label }}</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>{{ form.picture(class="form_title") }}</td>
+        </tr>
+        <tr>
+            <td class="form_label">
+                <strong>{{ form.description.label }}</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.description(class="form_description") }}
+            </td>
+        </tr>
+
+    </table>
+
+    <table class="table_buttons">
+        <tr>
+            <td>
+                <a href="{{ url_for('wishes') }}" class="button red_transparent">
+                    Cancel
+                </a>
+            </td>
+            <td class="rightered">
+                {{ form.submit(class="button blue_filled") }}
+            </td>
+        </tr>
+    </table>
+
+</form>
+
+{% endblock %}

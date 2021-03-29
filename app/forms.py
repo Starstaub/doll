@@ -1,7 +1,8 @@
 from flask_pagedown.fields import PageDownField
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, TextAreaField, IntegerField
-from wtforms.validators import DataRequired, Optional, Length
+from wtforms import StringField, SubmitField, SelectField, TextAreaField, IntegerField, FloatField
+from wtforms.fields.html5 import URLField
+from wtforms.validators import DataRequired, Optional, Length, url
 
 from utils import TODO_STATUS, ORDER_BY
 
@@ -14,18 +15,22 @@ class AddOrEditPost(FlaskForm):
     submit = SubmitField("Send")
 
 
-class AddOrEditLink(FlaskForm):
+class AddOrEditWish(FlaskForm):
 
     category = SelectField("Category")
-    add_category = StringField("Category", validators=[Length(min=0, max=50)])
-    url = StringField("URL", validators=[Length(min=0, max=255)])
+    add_category = StringField("Category", validators=[Length(min=0, max=15)])
+    url = URLField("URL", validators=[url()], render_kw={"placeholder": "http://..."})
     description = TextAreaField("Description")
     artist = StringField("Artist", validators=[Length(min=0, max=50)])
     author = StringField("Author", validators=[Length(min=0, max=50)])
     title = StringField("Title", validators=[Length(min=0, max=100), DataRequired()])
-    year = IntegerField("Year", validators=[Optional()])
+    year = IntegerField("Year", validators=[Optional()], render_kw={"placeholder": "1970"})
     website = StringField("Website", validators=[Length(min=0, max=50)])
     isbn = IntegerField("ISBN", validators=[Optional()])
+    picture = StringField("Picture URL", render_kw={"placeholder": "http://..."})
+    color = StringField("Color", validators=[Length(min=0, max=20)])
+    size = StringField("Size", validators=[Length(min=0, max=10)])
+    price = FloatField("Price", validators=[Optional()], render_kw={"placeholder": "9.99"})
 
     submit = SubmitField("Send")
 
@@ -62,17 +67,3 @@ class AddOrEditTask(FlaskForm):
 class DeleteItem(FlaskForm):
 
     submit = SubmitField("Delete permanently")
-
-
-class AddOrEditWishlist(FlaskForm):
-
-    title = StringField("Title", validators=[Length(min=0, max=100), DataRequired()])
-    category = SelectField("Category", validators=[DataRequired()])
-    add_category = StringField(
-        "Category", validators=[Length(min=0, max=15), Optional()]
-    )
-    website = StringField("Website", validators=[Length(min=0, max=50)])
-    url = StringField("URL", validators=[Length(min=0, max=255)])
-    description = TextAreaField("Description")
-
-    submit = SubmitField("Send")

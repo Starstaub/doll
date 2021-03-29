@@ -15,24 +15,6 @@ class Post(db.Model):
         return f"<Post {self.body}>"
 
 
-class Link(db.Model):
-
-    id = db.Column(db.Integer, primary_key=True)
-    category = db.Column(db.String(15))
-    url = db.Column(db.String(255))
-    description = db.Column(db.Text)
-    artist = db.Column(db.String(50))
-    author = db.Column(db.String(50))
-    title = db.Column(db.String(100))
-    year = db.Column(db.Integer)
-    website = db.Column(db.String(50))
-    isbn = db.Column(db.Integer)
-    timestamp = db.Column(db.DateTime, index=True, default=NOW_TIME)
-
-    def __repr__(self):
-        return f"<Link {self.title}>"
-
-
 class Task(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
@@ -47,15 +29,23 @@ class Task(db.Model):
         return f"<Task {self.title}>"
 
 
-class Wishlist(db.Model):
+class Wish(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100))
     category = db.Column(db.String(15))
-    website = db.Column(db.String(50))
-    url = db.Column(db.String(255))
+    url = db.Column(db.Text)
     description = db.Column(db.Text)
+    artist = db.Column(db.String(50))
+    author = db.Column(db.String(50))
+    size = db.Column(db.String(10))
+    color = db.Column(db.String(20))
+    title = db.Column(db.String(100))
+    year = db.Column(db.Integer)
+    website = db.Column(db.String(50))
+    isbn = db.Column(db.Integer)
+    picture = db.Column(db.Text)
+    price = db.Column(db.Float)
     timestamp = db.Column(db.DateTime, index=True)
 
     def __repr__(self):
-        return f"<Wishlist {self.title}>"
+        return f"<Wish {self.title}>"

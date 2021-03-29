@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% set active_page = "links" %}
+{% set active_page = "wishlist" %}
 
 {% block content %}
 
@@ -9,8 +9,8 @@
                 <h2>{{ title }}</h2>
             </td>
             <td class="rightered">
-                <a href="{{ url_for('link_add_edit') }}" class="button blue_filled">
-                    +  Add Link
+                <a href="{{ url_for('wish_add_edit') }}" class="button blue_filled">
+                    +  Add Wish
                 </a>
             </td>
         </tr>
@@ -32,7 +32,7 @@
     {% include '_messages.html' %}
 
     {% for result in results %}
-        {% include '_links.html' %}
+        {% include '_wishes.html' %}
     {% endfor %}
 
 {% endblock %}

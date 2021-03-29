@@ -72,6 +72,10 @@ hr {
     margin-right: 5px;
 }
 
+.marg_right_10 {
+    margin-right: 10px;
+}
+
 footer {
     margin-bottom: 20px;
 }
@@ -91,4 +95,8 @@ a:hover {
 
 li {
     list-style-type: circle;
+}
+
+img[alt=picture] {
+    width: 80px;
 }
