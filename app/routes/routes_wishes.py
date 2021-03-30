@@ -51,17 +51,11 @@ def wish_add_edit(id=None):
         if wish.category and form.add_category.data:
             wish.category = form.add_category.data
 
-        wish.url = form.url.data
+        wish.web_url = form.web_url.data
         wish.description = form.description.data
-        wish.artist = form.artist.data
-        wish.author = form.author.data
         wish.title = form.title.data
-        wish.year = form.year.data
         wish.website = form.website.data
-        wish.isbn = form.isbn.data
-        wish.size = form.size.data
-        wish.color = form.color.data
-        wish.picture = "![picture](" + form.picture.data + ")"
+        wish.picture_url = "![picture](" + form.picture_url.data + ")"
 
         if id:
             db.session.commit()
@@ -76,14 +70,11 @@ def wish_add_edit(id=None):
     elif id and request.method == "GET":
 
         form.category.data = wish.category
-        form.url.data = wish.url
+        form.web_url.data = wish.web_url
         form.description.data = wish.description
-        form.artist.data = wish.artist
-        form.author.data = wish.author
         form.title.data = wish.title
         form.year.data = wish.year
         form.website.data = wish.website
-        form.isbn.data = wish.isbn
 
     return render_template("wish.html", title=title, form=form, edit=edit)
 

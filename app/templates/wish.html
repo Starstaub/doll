@@ -58,69 +58,31 @@
                 <span style="width: 200px; display: inline-block;">
                     <strong>{{ form.website.label }}</strong>
                 </span>
-                <strong>{{ form.url.label }}</strong>
+                <strong>{{ form.web_url.label }}</strong>
             </td>
         </tr>
         <tr>
             <td>
                 {{ form.website(class="form_website") }}
-                {{ form.url(class="form_url") }}
+                {{ form.web_url(class="form_url") }}
 
-                {% if form.url.errors%}
+                {% if form.web_url.errors%}
                     <ul class="error_messages">
-                        {% for error in form.url.errors %}
+                        {% for error in form.web_url.errors %}
                             <li><strong>URL:</strong> {{ error }}</li>
                         {% endfor %}
                     </ul>
                 {% endif %}
             </td>
         </tr>
-        <tr>
-            <td>
-                <span style="width: 480px; display: inline-block;">
-                    <strong>{{ form.artist.label }}</strong>
-                </span>
-                <strong>{{ form.year.label }}</strong>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                {{ form.artist(class="form_artist") }} {{ form.year(class="form_year") }}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span style="width: 430px; display: inline-block;">
-                    <strong>{{ form.author.label }}</strong>
-                </span>
-                <strong>{{ form.isbn.label }}</strong>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                {{ form.author(class="form_author") }} {{ form.isbn(class="form_isbn") }}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span style="width: 430px; display: inline-block;">
-                    <strong>{{ form.color.label }}</strong>
-                </span>
-                <strong>{{ form.size.label }}</strong>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                {{ form.color(class="form_author") }} {{ form.size(class="form_isbn") }}
-            </td>
-        </tr>
+
         <tr>
             <td class="form_label leftered">
-                <strong>{{ form.picture.label }}</strong>
+                <strong>{{ form.picture_url.label }}</strong>
             </td>
         </tr>
         <tr>
-            <td>{{ form.picture(class="form_title") }}</td>
+            <td>{{ form.picture_url(class="form_title") }}</td>
         </tr>
         <tr>
             <td class="form_label">

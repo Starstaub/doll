@@ -32,19 +32,13 @@ class Task(db.Model):
 class Wish(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
-    category = db.Column(db.String(15))
-    url = db.Column(db.Text)
-    description = db.Column(db.Text)
-    artist = db.Column(db.String(50))
-    author = db.Column(db.String(50))
-    size = db.Column(db.String(10))
-    color = db.Column(db.String(20))
     title = db.Column(db.String(100))
-    year = db.Column(db.Integer)
+    category = db.Column(db.String(15))
     website = db.Column(db.String(50))
-    isbn = db.Column(db.Integer)
-    picture = db.Column(db.Text)
+    web_url = db.Column(db.Text)
+    picture_url = db.Column(db.Text)
     price = db.Column(db.Float)
+    description = db.Column(db.Text)
     timestamp = db.Column(db.DateTime, index=True)
 
     def __repr__(self):

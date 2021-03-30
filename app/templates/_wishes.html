@@ -1,8 +1,8 @@
 <table width="100%" style="padding: 10px 5px; border-bottom: 2px solid Silver;">
     <tr>
         <td>
-            {% if result.url %}
-                 <a href="{{ result.url }}" target="_blank"><strong>{{ result.title }}</strong></a>
+            {% if result.web_url %}
+                 <a href="{{ result.web_url }}" target="_blank"><strong>{{ result.title }}</strong></a>
             {% else %}
                 {{ result.title }}
             {% endif %}
@@ -14,21 +14,9 @@
             {% endif %}
         </td>
     </tr>
-    <tr>
-        <td>
 
-            {% if result.artist %}
-                {{ result.artist }} ({{ result.year }})
-
-            {% elif result.author %}
-
-                {{ result.author }} ({{ result.year }}) {{ result.isbn }}
-
-            {% endif %}
-        </td>
-    </tr>
-    {% if result.picture %}
-        <div style="width:100px">{{ result.picture | markdown }}</div>
+    {% if result.picture_url %}
+        <div style="width:100px">{{ result.picture_url | markdown }}</div>
     {% endif %}
 
     {% if result.description %}
