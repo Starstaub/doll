@@ -1,5 +1,5 @@
 # Doll
-## Work in Progress
+**_Work in Progress_**
 
 Doll is a private blog platform built with Flask.
 
